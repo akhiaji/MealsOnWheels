@@ -135,7 +135,7 @@ class MapTasks : NSObject {
             if let destinationLocation = destination {
                 var directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation
                 if let routeWaypoints = waypoints {
-                    directionsURLString += "&waypoint=optimize:true"
+                    directionsURLString += "&waypoints=optimize:true"
                     for waypoint in routeWaypoints {
                         directionsURLString += "|"+waypoint
                     }
@@ -175,10 +175,8 @@ class MapTasks : NSObject {
                                     let stepObject = Step(location: coord, direction: directions, distance: distance)
                                     self.steps.append(stepObject)
                                 }
-                                
                             }
                             completionHandler(status: status, success: true)
-                            
                         } else {
                             completionHandler(status: status, success: false)
                             
