@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'MealsOnWheels' do
 pod ‘GoogleMaps’
+pod 'FMDBx'
 end
 
 target 'MealsOnWheelsTests' do
