@@ -145,6 +145,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func nextButton(sender: AnyObject) {
+        if(MapTasks.steps.count == 0) {
+            return
+        }
         let prevStep = MapTasks.steps.removeFirst()
         let step = MapTasks.steps[0]
         let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)

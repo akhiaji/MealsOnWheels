@@ -135,6 +135,11 @@ class MapTasks : NSObject {
 
     
     static func getDirections(origin: String!, destination: String!, waypoints: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
+        steps.removeAll()
+        if(customPath != nil) {
+            customPath.removeAllCoordinates()
+        }
+        
         if let originLocation = origin {
             if let destinationLocation = destination {
                 var directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation
