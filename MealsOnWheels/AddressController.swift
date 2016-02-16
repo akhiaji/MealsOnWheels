@@ -50,10 +50,26 @@ class AddressController: UIViewController {
     }
     
     @IBAction func route(sender: AnyObject) {
-        routeSpec!.saveData()
-        MapTasks.getDirections(origin, destination: destination, waypoints: wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
-            print(status)
-        })
+        let nameAlert = UIAlertController(title: "Title", message: "Title of this route", preferredStyle: UIAlertControllerStyle.Alert)
+        nameAlert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "name?"
+        }
+        
+        let finishAction = UIAlertAction(title: "Route", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+            self.routeSpec!.saveData()
+            self.routeSpec = RouteSpec(waypoints: Array<GMSPlace>())
+            MapTasks.getDirections(self.origin, destination: self.destination, waypoints: self.wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
+                print(status)
+            })
+            self.performSegueWithIdentifier("showMap", sender: sender)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
+            
+        }
+        nameAlert.addAction(finishAction)
+        nameAlert.addAction(cancelAction)
+        presentViewController(nameAlert, animated: true, completion: nil)
     }
 }
 
@@ -77,20 +93,8 @@ extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
         default:
             true
         }
-        var shortStart = ""
-        if let segment = origin.rangeOfString(",") {
-            shortStart = origin.substringToIndex(segment.startIndex)
-        }
-        var shortEnd = ""
-        if let segment = destination.rangeOfString(",") {
-            shortEnd = destination.substringToIndex(segment.startIndex)
-        }
-        
-//        var waypointsString = ""
-//        if wayponts != nil {
-//            waypointsString = wayponts.description
-//        }
-        label.text = "Start: \(shortStart)| End: \(shortEnd)\n \(wayponts.description)"
+
+        label.text = routeSpec!.toString()
     }
     
     func resultsController(resultsController: GMSAutocompleteResultsViewController!, didFailAutocompleteWithError error: NSError!) {

@@ -12,6 +12,7 @@ import GoogleMaps
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    @IBOutlet weak var directionView: UILabel!
     @IBOutlet weak var lblInfo: UITextView!
     @IBOutlet weak var viewMap: GMSMapView!
     var locationManager = CLLocationManager()
@@ -45,28 +46,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        var step = MapTasks.steps[0]
-        let check = newLocation.distanceFromLocation(step.location)
-        if(check < checkpointDist) {
-            switch (checkPointNum) {
-            case 3:
-                checkpointDist = step.distance * 0.25
-                checkPointNum -= 1
-            case 2:
-                checkpointDist = step.distance * 0.1
-                checkPointNum -= 1
-            case 1:
-                step = MapTasks.steps.removeAtIndex(0)
-                checkpointDist = step.distance * 0.9
-                checkPointNum = 3
-            default:
-                checkpointDist = step.distance * 0.9
-                checkPointNum = 3
-            }
-        }
-    }
-    
+//    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+//        var step = MapTasks.steps[0]
+//        let check = newLocation.distanceFromLocation(step.location)
+//        if(check < checkpointDist) {
+//            switch (checkPointNum) {
+//            case 3:
+//                checkpointDist = step.distance * 0.25
+//                checkPointNum -= 1
+//            case 2:
+//                checkpointDist = step.distance * 0.1
+//                checkPointNum -= 1
+//            case 1:
+//                step = MapTasks.steps.removeAtIndex(0)
+//                checkpointDist = step.distance * 0.9
+//                checkPointNum = 3
+//            default:
+//                checkpointDist = step.distance * 0.9
+//                checkPointNum = 3
+//            }
+//        }
+//    }
+//    
 //    func locationManager(manager: CLLocationManager, didEnterRegion region: CLRegion) {
 //        print("hello")
 //        locationManager.stopMonitoringForRegion(region)
@@ -116,6 +117,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             synthesizer.speakUtterance(utterance)
             locationManager.startUpdatingLocation()
             self.checkpointDist = step.distance * 0.9
+            let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+            attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
+            directionView.attributedText = attrStr
+            
             
             print(step.location)
 //            let region = CLCircularRegion(center: step.location, radius: step.distance * 1, identifier: "checkpoint one")
@@ -138,54 +143,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    @IBAction func findAddress(sender: AnyObject) {
-        let addressAlert = UIAlertController(title: "Address Finder", message: "Type the address you want to find:", preferredStyle: UIAlertControllerStyle.Alert)
+    
+    @IBAction func nextButton(sender: AnyObject) {
+        let prevStep = MapTasks.steps.removeFirst()
+        let step = MapTasks.steps[0]
+        let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
+        directionView.attributedText = attrStr
+        let bounds = GMSCoordinateBounds(coordinate: step.location.coordinate, coordinate: prevStep.location.coordinate)
+        viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
+        drawRoute()
         
-        addressAlert.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            textField.placeholder = "Address?"
-        }
-        let findAction = UIAlertAction(title: "Find Address", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-            let address = (addressAlert.textFields![0] ).text! as String
-            
-            
-            self.mapTasks.geocodeAddress(address, withCompletionHandler: { (status, success) -> Void in
-                if !success {
-                    print(status)
-                    
-                    if status == "ZERO_RESULTS" {
-                        self.showAlertWithMessage("The location could not be found.")
-                    }
-                }
-                else {
-                    let coordinate = CLLocationCoordinate2D(latitude: self.mapTasks.fetchedAddressLatitude, longitude: self.mapTasks.fetchedAddressLongitude)
-                    self.viewMap.camera = GMSCameraPosition.cameraWithTarget(coordinate, zoom: 14.0)
-                    self.clearMap()
-                    self.setupLocationMarker(coordinate)                }
-            })
-            
-        }
         
-        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
-            
-        }
+
         
-        addressAlert.addAction(findAction)
-        addressAlert.addAction(closeAction)
-        
-        presentViewController(addressAlert, animated: true, completion: nil)
     }
     
-    func showAlertWithMessage(message: String) {
-        let alertController = UIAlertController(title: "GMapsDemo", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
-            
-        }
-        
-        alertController.addAction(closeAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
-    }
     
     func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
         locationMarker = GMSMarker(position: coordinate)
@@ -271,7 +244,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func drawRoute() {
         let route = MapTasks.overviewPolyline["points"] as! String
         let path: GMSPath = GMSPath(fromEncodedPath: route)
-        routePolyline = GMSPolyline(path: path)
+        routePolyline = GMSPolyline(path: MapTasks.customPath)
         stuffOnMap.append(routePolyline)
         routePolyline.map = viewMap
         

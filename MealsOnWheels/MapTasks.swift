@@ -28,6 +28,8 @@ class MapTasks : NSObject {
     
     static var overviewPolyline: Dictionary<NSObject, AnyObject>!
     
+    static var customPath: GMSMutablePath!
+    
     static var originCoordinate: CLLocationCoordinate2D!
     
     static var destinationCoordinate: CLLocationCoordinate2D!
@@ -45,6 +47,8 @@ class MapTasks : NSObject {
     static var totalDuration: String!
     
     static var steps: Array<Step>! = Array<Step>()
+    
+    static var locationCoords: Array<CLLocationCoordinate2D>!
     
     static var markerLoc = Array<CLLocationCoordinate2D>()
     
@@ -161,12 +165,17 @@ class MapTasks : NSObject {
                             self.originAddress = legs[0]["start_address"] as! String
                             self.destinationAddress = legs[legs.count - 1]["end_address"] as! String
                             self.calculateTotalDistanceAndDuration()
+                            let route = overviewPolyline["points"] as! String
+                            let path: GMSPath = GMSPath(fromEncodedPath: route)
+                            customPath = GMSMutablePath(path: path)
+                            customPath.removeAllCoordinates()
                             for leg in self.selectedRoute["legs"] as! Array<Dictionary<NSObject, AnyObject>> {
                                 for step in leg["steps"] as! Array<Dictionary<NSObject, AnyObject>> {
                                     let lat = step["end_location"]!["lat"] as! Double
                                     let long = step["end_location"]!["lng"] as! Double
                                     let distance = step["distance"]!["value"] as! Double
                                     let coord = CLLocation(latitude: lat, longitude: long)
+                                    customPath.addCoordinate(coord.coordinate)
                                     let encodedString = step["html_instructions"] as! String
                                     let attributedOptions : [String: AnyObject] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding]
                                     let attributedString = NSAttributedString(string: encodedString, attributes: attributedOptions)

@@ -26,15 +26,29 @@ class RouteSpec: NSObject {
     }
     
     func toString() -> String{
-        return "Start: \(origin!.name)| End: \(destination!.name)\n \(waypoints!.description)"
+        var origin = ""
+        if self.origin != nil {
+            origin = (self.origin?.name)!
+        }
+        var destination = ""
+        if self.destination != nil {
+            destination = (self.destination?.name)!
+        }
+        var waypoints = ""
+        for place in self.waypoints! {
+            waypoints += "|" + place.name
+        }
+        
+        
+        return "Start: \(origin)| End: \(destination)\n \(waypoints)"
     }
     
     func infoString() -> String{
         var names = ""
         for place in waypoints! {
-            names += "|" + place.name
+            names += "|" + place.formattedAddress
         }
-        return "\(origin!.name)|\(destination!.name)|\(names)"
+        return "\(origin!.formattedAddress)|\(destination!.formattedAddress)\(names)"
     }
     
     func saveData() {
@@ -43,7 +57,7 @@ class RouteSpec: NSObject {
         let entity = NSEntityDescription.entityForName("Route", inManagedObjectContext: managedContext)
         let route = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         route.setValue(toString(), forKey: "routeDescription")
-        route.setValue(toString(), forKey: "routeInfo")
+        route.setValue(infoString(), forKey: "routeInfo")
         
         do {
             try managedContext.save()
