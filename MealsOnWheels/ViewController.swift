@@ -25,6 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var stuffOnMap = Array<AnyObject>()
     var checkPointNum = 0
     var checkpointDist: Double = 0
+    var currentStep: GMSCircle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,6 +155,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
         directionView.attributedText = attrStr
         let bounds = GMSCoordinateBounds(coordinate: step.location.coordinate, coordinate: prevStep.location.coordinate)
+        if currentStep != nil {
+            currentStep.map = nil
+        }
+        currentStep = GMSCircle(position: step.location.coordinate, radius: CLLocationDistance(step.distance * 0.1))
+        currentStep.map = viewMap
+        currentStep.fillColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.2)
+        stuffOnMap.append(currentStep)
         viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
         drawRoute()
         
@@ -247,8 +255,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func drawRoute() {
         let route = MapTasks.overviewPolyline["points"] as! String
         let path: GMSPath = GMSPath(fromEncodedPath: route)
-        routePolyline = GMSPolyline(path: MapTasks.customPath)
+        routePolyline = GMSPolyline(path: path)
         stuffOnMap.append(routePolyline)
+        routePolyline.strokeWidth = 3
+        routePolyline.geodesic = true
         routePolyline.map = viewMap
         
     }
