@@ -16,13 +16,15 @@ class LoginController: UIViewController {
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var signUp: UIButton!
+    var loginSuccess = false
     
     override func viewDidLoad() {
         let prefs = NSUserDefaults.standardUserDefaults()
         if (prefs.valueForKey("email") != nil && prefs.valueForKey("pass") != nil) {
             User.init(email: prefs.valueForKey("email") as! String, password: prefs.valueForKey("pass")as! String, errorCase: {() -> Void in
                 }, closure: {() -> Void in
-                    self.performSegueWithIdentifier("login", sender: self)})
+                    self.performSegueWithIdentifier("login", sender: self)
+            })
         }
 
     }
@@ -31,11 +33,24 @@ class LoginController: UIViewController {
         SwiftLoader.show(title: "Loading...", animated: true)
         User.init(email: emailField.text!, password: passField.text!, errorCase: {() -> Void in
             SwiftLoader.hide()
+            let nameAlert = UIAlertController(title: "Failed Sign Up", message: "Incorrect Username or password", preferredStyle: UIAlertControllerStyle.Alert)
+            nameAlert
+            nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+            self.presentViewController(nameAlert, animated: true, completion: nil)
+            self.loginSuccess = false
         }, closure: {() -> Void in
-                SwiftLoader.hide()
-                self.performSegueWithIdentifier("login", sender: self)
-                print("Hello segue")
+            SwiftLoader.hide()
+            self.loginSuccess = true
+            self.performSegueWithIdentifier("login", sender: self)
         })
         
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if (identifier == "login") {
+            return loginSuccess
+        } else {
+            return true
+        }
     }
 }

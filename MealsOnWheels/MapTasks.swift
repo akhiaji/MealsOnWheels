@@ -57,82 +57,7 @@ class MapTasks : NSObject {
         super.init()
     }
     
-    func geocodeAddress(address: String!, withCompletionHandler completionHandler: ((status: String, success: Bool) -> Void)) {
-        if var lookupAddress = address {
-            lookupAddress = lookupAddress.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-            let geocodeURLString = baseURLGeocode + "address=" + lookupAddress
-            
-            let geocodeURL = NSURL(string: geocodeURLString)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let geocodingResultsData = NSData(contentsOfURL: geocodeURL!)
-                do {
-                    let dictionary: Dictionary<NSObject, AnyObject> = try NSJSONSerialization.JSONObjectWithData(geocodingResultsData!, options: NSJSONReadingOptions.MutableContainers) as! Dictionary<NSObject, AnyObject>
-
-                    // Get the response status.
-                    let status = dictionary["status"] as! String
-                
-                    if status == "OK" {
-                        let allResults = dictionary["results"] as! Array<Dictionary<NSObject, AnyObject>>
-                        self.lookupAddressResults = allResults[0]
-                    
-                        // Keep the most important values.
-                        self.fetchedFormattedAddress = self.lookupAddressResults["formatted_address"] as! String
-                        let geometry = self.lookupAddressResults["geometry"] as! Dictionary<NSObject, AnyObject>
-                        self.fetchedAddressLongitude = ((geometry["location"] as! Dictionary<NSObject, AnyObject>)["lng"] as! NSNumber).doubleValue
-                        self.fetchedAddressLatitude = ((geometry["location"] as! Dictionary<NSObject, AnyObject>)["lat"] as! NSNumber).doubleValue
-                    
-                        completionHandler(status: status, success: true)
-                    }
-                    else {
-                        completionHandler(status: status, success: false)
-                    }
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                    completionHandler(status: "", success: false)
-                }
-            })
-        }
-        else {
-            completionHandler(status: "No valid address.", success: false)
-        }
-    }
     
-    func findAddresses(address: String!, withCompletionHandler completionHandler: ((addresses: Array<String>, status: String, success: Bool) -> Void)) {
-        if var lookupAddress = address {
-            lookupAddress = lookupAddress.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-            let geocodeURLString = baseURLGeocode + "address=" + lookupAddress
-            
-            let geocodeURL = NSURL(string: geocodeURLString)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let geocodingResultsData = NSData(contentsOfURL: geocodeURL!)
-                do {
-                    let dictionary: Dictionary<NSObject, AnyObject> = try NSJSONSerialization.JSONObjectWithData(geocodingResultsData!, options: NSJSONReadingOptions.MutableContainers) as! Dictionary<NSObject, AnyObject>
-                    
-                    // Get the response status.
-                    let status = dictionary["status"] as! String
-                    
-                    if status == "OK" {
-                        let allResults = dictionary["results"] as! Array<Dictionary<NSObject, AnyObject>>
-                        var allOptions = [String]()
-                        for option in allResults {
-                            allOptions.append(option["formatted_address"] as! String)
-                        }
-                        completionHandler(addresses: allOptions, status: status, success: true)
-                    }
-                    else {
-                        completionHandler(addresses: [String](), status: status, success: false)
-                    }
-                } catch let error as NSError {
-                    print(error.localizedDescription)
-                    completionHandler(addresses: [String](), status: "", success: false)
-                }
-            })
-        }
-        else {
-            completionHandler(addresses: [String](), status: "No valid address.", success: false)
-        }
-    }
-
     
     static func getDirections(origin: String!, destination: String!, waypoints: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
         steps.removeAll()
@@ -179,6 +104,8 @@ class MapTasks : NSObject {
                                     let lat = step["end_location"]!["lat"] as! Double
                                     let long = step["end_location"]!["lng"] as! Double
                                     let distance = step["distance"]!["value"] as! Double
+                                    let path = step["polyline"]
+                                    let epath = path!["points"] as! String
                                     let coord = CLLocation(latitude: lat, longitude: long)
                                     customPath.addCoordinate(coord.coordinate)
                                     let encodedString = step["html_instructions"] as! String
@@ -186,7 +113,7 @@ class MapTasks : NSObject {
                                     let attributedString = NSAttributedString(string: encodedString, attributes: attributedOptions)
                                     let directions = attributedString.string
                                     print(directions)
-                                    let stepObject = Step(location: coord, direction: directions, distance: distance)
+                                    let stepObject = Step(location: coord, direction: directions, distance: distance, path: GMSPath(fromEncodedPath: epath))
                                     self.steps.append(stepObject)
                                 }
                             }

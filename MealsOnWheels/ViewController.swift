@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import GoogleMaps
+import Firebase
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -26,6 +27,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var checkPointNum = 0
     var checkpointDist: Double = 0
     var currentStep: GMSCircle!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +123,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
             attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
             directionView.attributedText = attrStr
+            drawRoute()
             
             
             print(step.location)
@@ -154,7 +157,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
         attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
         directionView.attributedText = attrStr
-        let bounds = GMSCoordinateBounds(coordinate: step.location.coordinate, coordinate: prevStep.location.coordinate)
         if currentStep != nil {
             currentStep.map = nil
         }
@@ -162,12 +164,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         currentStep.map = viewMap
         currentStep.fillColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.2)
         stuffOnMap.append(currentStep)
+        let bounds = GMSCoordinateBounds(path: step.path)
         viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
-        drawRoute()
-        
-        
-
-        
     }
     
     
@@ -253,14 +251,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func drawRoute() {
-        let route = MapTasks.overviewPolyline["points"] as! String
-        let path: GMSPath = GMSPath(fromEncodedPath: route)
-        routePolyline = GMSPolyline(path: path)
-        stuffOnMap.append(routePolyline)
-        routePolyline.strokeWidth = 3
-        routePolyline.geodesic = true
-        routePolyline.map = viewMap
-        
+        for i in MapTasks.steps {
+            let pathLine = GMSPolyline(path: i.path)
+            pathLine.map = viewMap
+            stuffOnMap.append(pathLine)
+            pathLine.strokeWidth = 3
+        }
     }
     
     func displayRouteInfo() {
