@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import GoogleMaps
-import CoreData
 
 
 class AddressController: UIViewController {
@@ -56,11 +55,15 @@ class AddressController: UIViewController {
         }
         
         let finishAction = UIAlertAction(title: "Route", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-            self.routeSpec!.saveData()
-            self.routeSpec = RouteSpec(waypoints: Array<GMSPlace>())
             MapTasks.getDirections(self.origin, destination: self.destination, waypoints: self.wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
+                if success {
+                    self.routeSpec?.order = MapTasks.order
+                    self.routeSpec!.saveData()
+                    self.routeSpec = RouteSpec(waypoints: Array<GMSPlace>())
+                }
                 print(status)
             })
+            
             self.performSegueWithIdentifier("showMap", sender: sender)
         }
         
@@ -87,6 +90,7 @@ extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
         case 1:
             wayponts.append(place.formattedAddress + ",")
             routeSpec!.waypoints!.append(place)
+            print(place)
         case 0:
             origin = place.formattedAddress + ","
             routeSpec!.origin = place

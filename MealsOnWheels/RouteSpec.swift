@@ -8,14 +8,56 @@
 
 import Foundation
 import GoogleMaps
-import CoreData
+import Firebase
 
 class RouteSpec: NSObject {
-    static var routes = [NSManagedObject]()
     var origin: GMSPlace?
     var destination: GMSPlace?
-    var waypoints: Array<GMSPlace>?
-    
+    var waypoints: Array<GMSPlace> = Array<GMSPlace>()
+    var uid: String?
+    var order: Array<Int> = Array<Int>()
+    var ref: Firebase! = Firebase(url: "https://mealsonwheels.firebaseio.com")
+    let placesClient = GMSPlacesClient()
+
+    init(dict: NSDictionary) {
+        super.init()
+        uid = dict["uid"] as? String
+        for i in dict["waypoints"] as! NSArray {
+            placesClient.lookUpPlaceID(i as! String, callback: { (place: GMSPlace?, error: NSError?) -> Void in
+                if let error = error {
+                    print("lookup place id query error: \(error.localizedDescription)")
+                    return
+                }
+                if let place = place {
+                    self.waypoints.append(place)
+                }
+                
+            })
+        }
+        
+        placesClient.lookUpPlaceID(dict["origin"] as! String, callback: { (place: GMSPlace?, error: NSError?) -> Void in
+            if let error = error {
+                print("lookup place id query error: \(error.localizedDescription)")
+                return
+            }
+            if let place = place {
+                self.origin = place
+            }
+            
+        })
+        placesClient.lookUpPlaceID(dict["destination"] as! String, callback: { (place: GMSPlace?, error: NSError?) -> Void in
+            if let error = error {
+                print("lookup place id query error: \(error.localizedDescription)")
+                return
+            }
+            if let place = place {
+                self.destination = place
+            }
+            
+        })
+
+        
+    }
     init(origin: GMSPlace, destination: GMSPlace, waypoints: Array<GMSPlace>) {
         self.origin = origin
         self.destination = destination
@@ -34,9 +76,9 @@ class RouteSpec: NSObject {
         if self.destination != nil {
             destination = (self.destination?.name)!
         }
-        var waypoints = ""
-        for place in self.waypoints! {
-            waypoints += "|" + place.name
+        var waypointsS = ""
+        for place in self.waypoints {
+            waypointsS += "|" + place.name
         }
         
         
@@ -45,25 +87,39 @@ class RouteSpec: NSObject {
     
     func infoString() -> String{
         var names = ""
-        for place in waypoints! {
+        for place in waypoints {
             names += "|" + place.formattedAddress
         }
         return "\(origin!.formattedAddress)|\(destination!.formattedAddress)\(names)"
     }
     
     func saveData() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        let entity = NSEntityDescription.entityForName("Route", inManagedObjectContext: managedContext)
-        let route = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        route.setValue(toString(), forKey: "routeDescription")
-        route.setValue(infoString(), forKey: "routeInfo")
-        
-        do {
-            try managedContext.save()
-            
-        } catch let error as NSError {
-            print("Could Not Save\(error)")
-        }
+        ref = ref.childByAppendingPath(User.uid).childByAppendingPath("paths").childByAutoId()
+        print(User.uid)
+        self.uid = ref.key
+        let path = ["data": toDict()] as NSDictionary
+        ref.setValue(path)
     }
+    
+    func toDict() -> NSDictionary {
+        let dict = NSMutableDictionary()
+        let list = NSMutableArray()
+        if order.count == 0 {
+            for var i = 0; i < waypoints.count; i++ {
+                list.addObject(waypoints[i].formattedAddress)
+            }
+        } else {
+            for i in order {
+                list.addObject(waypoints[i].placeID)
+            }
+        }
+        dict.setObject((origin?.placeID)!, forKey: "origin")
+        dict.setObject(list, forKey: "waypoints")
+        dict.setObject((destination?.placeID)!, forKey: "destination")
+        if let uid = uid {
+            dict.setObject(uid, forKey: "uid")
+        }
+        return dict
+    }
+    
 }

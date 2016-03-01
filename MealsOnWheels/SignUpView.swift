@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import SwiftLoader
 
 class SignUpView: UIViewController {
     
@@ -19,7 +20,7 @@ class SignUpView: UIViewController {
     var authorized = false
     
     @IBAction func signUp(sender: AnyObject) {
-        if password.text == confPassword.text {
+        if password.text == confPassword.text {            SwiftLoader.show(title: "Loading...", animated: true)
             ref.createUser(username.text, password: password.text, withCompletionBlock: { (NSError error) -> Void in
                 if (error != nil) {
                     let nameAlert = UIAlertController(title: "Failed Sign Up", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
@@ -27,8 +28,25 @@ class SignUpView: UIViewController {
                     self.presentViewController(nameAlert, animated: true, completion: nil)
                 } else {
                     self.authorized = true
-                    self.ref.authUser(self.username.text, password: self.password.text, withCompletionBlock: nil)
-                    self.performSegueWithIdentifier("signupcomplete", sender: self)
+                    self.ref.authUser(self.username.text, password: self.password.text) {
+                        error, authData in
+                        if error != nil {
+                            // an error occured while attempting login
+                        } else {
+                            User.init(email: self.username.text!, password: self.password.text!, errorCase: {() -> Void in
+                                SwiftLoader.hide()
+                                let nameAlert = UIAlertController(title: "Failed Sign Up", message: "Incorrect Username or password", preferredStyle: UIAlertControllerStyle.Alert)
+                                nameAlert
+                                nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+                                self.presentViewController(nameAlert, animated: true, completion: nil)
+                                self.authorized = false
+                                }, closure: {() -> Void in
+                                    SwiftLoader.hide()
+                                    self.authorized = true
+                                    self.performSegueWithIdentifier("signupcomplete", sender: self)
+                            })
+                        }
+                    }
                 }
            })
         }

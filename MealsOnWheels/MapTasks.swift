@@ -10,7 +10,6 @@ import Foundation
 import GoogleMaps
 
 class MapTasks : NSObject {
-    
     let baseURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?"
     
     var lookupAddressResults: Dictionary<NSObject, AnyObject>!
@@ -20,7 +19,6 @@ class MapTasks : NSObject {
     var fetchedAddressLongitude: Double!
     
     var fetchedAddressLatitude: Double!
-    
     
     static let baseURLDirections = "https://maps.googleapis.com/maps/api/directions/json?"
     
@@ -52,12 +50,54 @@ class MapTasks : NSObject {
     
     static var markerLoc = Array<CLLocationCoordinate2D>()
     
+    static var order = Array<Int>()
+    
     
     override init() {
         super.init()
     }
     
     
+    func geocodeAddress(address: String!, withCompletionHandler completionHandler: ((status: String, success: Bool) -> Void)) {
+        if var lookupAddress = address {
+            lookupAddress = lookupAddress.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+            let geocodeURLString = baseURLGeocode + "address=" + lookupAddress
+            
+            let geocodeURL = NSURL(string: geocodeURLString)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let geocodingResultsData = NSData(contentsOfURL: geocodeURL!)
+                do {
+                    let dictionary: Dictionary<NSObject, AnyObject> = try NSJSONSerialization.JSONObjectWithData(geocodingResultsData!, options: NSJSONReadingOptions.MutableContainers) as! Dictionary<NSObject, AnyObject>
+                    
+                    // Get the response status.
+                    let status = dictionary["status"] as! String
+                    
+                    if status == "OK" {
+                        let allResults = dictionary["results"] as! Array<Dictionary<NSObject, AnyObject>>
+                        self.lookupAddressResults = allResults[0]
+                        
+                        // Keep the most important values.
+                        self.fetchedFormattedAddress = self.lookupAddressResults["formatted_address"] as! String
+                        let geometry = self.lookupAddressResults["geometry"] as! Dictionary<NSObject, AnyObject>
+                        self.fetchedAddressLongitude = ((geometry["location"] as! Dictionary<NSObject, AnyObject>)["lng"] as! NSNumber).doubleValue
+                        self.fetchedAddressLatitude = ((geometry["location"] as! Dictionary<NSObject, AnyObject>)["lat"] as! NSNumber).doubleValue
+                        
+                        completionHandler(status: status, success: true)
+                    }
+                    else {
+                        completionHandler(status: status, success: false)
+                    }
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                    completionHandler(status: "", success: false)
+                }
+            })
+        }
+        else {
+            completionHandler(status: "No valid address.", success: false)
+        }
+    }
+
     
     static func getDirections(origin: String!, destination: String!, waypoints: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
         steps.removeAll()
@@ -83,11 +123,10 @@ class MapTasks : NSObject {
                         let dictionary: Dictionary<NSObject, AnyObject> = try NSJSONSerialization.JSONObjectWithData(directionsData!, options: NSJSONReadingOptions.MutableContainers) as! Dictionary<NSObject, AnyObject>
                         let status = dictionary["status"] as! String
                         
-                        if status == "OK" {
-                            self.selectedRoute = (dictionary["routes"] as! Array<Dictionary<NSObject, AnyObject>>)[0]
+                        if status == "OK" {                            self.selectedRoute = (dictionary["routes"] as! Array<Dictionary<NSObject, AnyObject>>)[0]
                             self.overviewPolyline = self.selectedRoute["overview_polyline"] as! Dictionary<NSObject, AnyObject>
                             let legs = self.selectedRoute["legs"] as! Array<Dictionary<NSObject, AnyObject>>
-                            
+                            self.order = self.selectedRoute["waypoint_order"] as! Array<Int>
                             let startLocationDictionary = legs[0]["start_location"] as! Dictionary<NSObject, AnyObject>
                             self.originCoordinate = CLLocationCoordinate2D(latitude: startLocationDictionary["lat"] as! Double, longitude: startLocationDictionary["lng"] as! Double)
                             let endLocationDictionary = legs[legs.count - 1]["end_location"] as! Dictionary<NSObject, AnyObject>

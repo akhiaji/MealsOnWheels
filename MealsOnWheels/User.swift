@@ -12,8 +12,9 @@ import Firebase
 class User: NSObject {
     static var email: String!
     static var uid: String!
-    static var routes: Array<RouteSpec>!
-    let ref: Firebase! = Firebase(url: "https://MealsOnWheels.firebaseio.com")
+    static var routes: Array<RouteSpec> = Array<RouteSpec>()
+    static var routeDic: Array<NSDictionary> = Array<NSDictionary>()
+    let ref: Firebase! = Firebase(url: "https://mealsonwheels.firebaseio.com")
     
     override init() {
     }
@@ -28,17 +29,29 @@ class User: NSObject {
                     errorCase()
                 } else {
                     User.uid = result.uid
+                    for route in User.routes {
+                        User.routeDic.append(route.toDict())
+                    }
+                    self.ref.childByAppendingPath("users")
+                        .childByAppendingPath(result.uid).setValue(User.routeDic as NSArray)
                     let prefs = NSUserDefaults.standardUserDefaults()
                     prefs.setValue(password, forKey: "pass")
                     prefs.setValue(email, forKey: "email")
+                    let pathRef = self.ref.childByAppendingPath(User.uid).childByAppendingPath("paths")
+                    pathRef.observeEventType(.ChildAdded, withBlock: {snapshot in
+                        for child: FDataSnapshot in snapshot.children.allObjects as! [FDataSnapshot] {
+                            let dic = child.value as! NSDictionary
+                            User.routes.append(RouteSpec.init(dict: dic))
+                        }
+                    })
+                    
                     closure()
                 }
             })
         })
-        
-        
-        
     }
+    
+    
     
     
 }

@@ -10,10 +10,8 @@
 		30FBAAEFD30D5C8D7F699C3B /* Pods_MealsOnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9A2C90E42C974FE2C172B /* Pods_MealsOnWheels.framework */; };
 		4910610A1C4C1E2400674084 /* AddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491061091C4C1E2400674084 /* AddressController.swift */; };
 		498249401C4EE5B100EE7001 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4982493F1C4EE5B100EE7001 /* Step.swift */; };
-		49824A461C6C9B9800EE7001 /* MealsOnWheels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49824A441C6C9B9800EE7001 /* MealsOnWheels.xcdatamodeld */; };
 		49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */; };
 		49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A511C6D3CE600EE7001 /* RouteViews.swift */; };
-		49824A561C6D4C7F00EE7001 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49824A541C6D4C7F00EE7001 /* Model.xcdatamodeld */; };
 		49DF53141C72DC1B00B9C0A5 /* UIRouteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */; };
 		49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */; };
 		49DF53181C74B55300B9C0A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53171C74B55300B9C0A5 /* User.swift */; };
@@ -41,10 +39,8 @@
 /* Begin PBXFileReference section */
 		491061091C4C1E2400674084 /* AddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressController.swift; sourceTree = "<group>"; };
 		4982493F1C4EE5B100EE7001 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
-		49824A451C6C9B9800EE7001 /* MealsOnWheels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealsOnWheels.xcdatamodel; sourceTree = "<group>"; };
 		49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSpec.swift; sourceTree = "<group>"; };
 		49824A511C6D3CE600EE7001 /* RouteViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViews.swift; sourceTree = "<group>"; };
-		49824A551C6D4C7F00EE7001 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRouteViewCell.swift; sourceTree = "<group>"; };
 		49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConroller.swift; sourceTree = "<group>"; };
 		49DF53171C74B55300B9C0A5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -144,13 +140,11 @@
 				FA1F00B91C24D1020003B09B /* MapTasks.swift */,
 				FA1F00971C21C79B0003B09B /* AppDelegate.swift */,
 				49DF53171C74B55300B9C0A5 /* User.swift */,
-				49824A441C6C9B9800EE7001 /* MealsOnWheels.xcdatamodeld */,
 				FA1F009B1C21C79B0003B09B /* Main.storyboard */,
 				49DF53191C7505CB00B9C0A5 /* Login.storyboard */,
 				FA1F009E1C21C79B0003B09B /* Images.xcassets */,
 				FA1F00A01C21C79B0003B09B /* LaunchScreen.xib */,
 				FA1F00951C21C79B0003B09B /* Supporting Files */,
-				49824A541C6D4C7F00EE7001 /* Model.xcdatamodeld */,
 			);
 			path = MealsOnWheels;
 			sourceTree = "<group>";
@@ -339,12 +333,10 @@
 				49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */,
 				49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */,
 				498249401C4EE5B100EE7001 /* Step.swift in Sources */,
-				49824A461C6C9B9800EE7001 /* MealsOnWheels.xcdatamodeld in Sources */,
 				FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */,
 				49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */,
 				49DF531C1C7E2BD100B9C0A5 /* SignUpView.swift in Sources */,
 				49DF53181C74B55300B9C0A5 /* User.swift in Sources */,
-				49824A561C6D4C7F00EE7001 /* Model.xcdatamodeld in Sources */,
 				49DF53141C72DC1B00B9C0A5 /* UIRouteViewCell.swift in Sources */,
 				FA1F00981C21C79B0003B09B /* AppDelegate.swift in Sources */,
 			);
@@ -569,29 +561,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		49824A441C6C9B9800EE7001 /* MealsOnWheels.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				49824A451C6C9B9800EE7001 /* MealsOnWheels.xcdatamodel */,
-			);
-			currentVersion = 49824A451C6C9B9800EE7001 /* MealsOnWheels.xcdatamodel */;
-			path = MealsOnWheels.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		49824A541C6D4C7F00EE7001 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				49824A551C6D4C7F00EE7001 /* Model.xcdatamodel */,
-			);
-			currentVersion = 49824A551C6D4C7F00EE7001 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = FA1F008A1C21C79B0003B09B /* Project object */;
 }

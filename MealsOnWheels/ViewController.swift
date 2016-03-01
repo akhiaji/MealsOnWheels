@@ -168,17 +168,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
     }
     
-    
-    func setupLocationMarker(coordinate: CLLocationCoordinate2D) {
-        locationMarker = GMSMarker(position: coordinate)
-        stuffOnMap.append(locationMarker)
-        locationMarker.map = viewMap
-        locationMarker.title = mapTasks.fetchedFormattedAddress
-        locationMarker.appearAnimation = kGMSMarkerAnimationPop
-        locationMarker.icon = GMSMarker.markerImageWithColor(UIColor.blueColor())
-        locationMarker.opacity = 0.75
-    }
-    
     func clearMap() {
         for stuff in stuffOnMap {
             if let overlayStuff = stuff as? GMSOverlay{
