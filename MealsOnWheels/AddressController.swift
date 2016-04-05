@@ -12,10 +12,9 @@ import GoogleMaps
 
 
 class AddressController: UIViewController {
-    
-    @IBOutlet weak var searchBar: UIView!
     @IBOutlet weak var addressType: UISegmentedControl!
     @IBOutlet weak var label: UITextView!
+    @IBOutlet weak var searchView: UIView!
     var searchController: UISearchController!
     var currentField: UITextField!
     var resultsViewController: GMSAutocompleteResultsViewController?
@@ -39,13 +38,15 @@ class AddressController: UIViewController {
         
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
-        searchController?.searchBar.sizeToFit()
-        searchBar.addSubview((searchController?.searchBar)!)
-        searchController?.searchBar.sizeToFit()
+        self.searchView.addSubview((searchController?.searchBar)!)
+        print(searchController.view.bounds)
         
-        self.definesPresentationContext = true
-        
+        self.definesPresentationContext = true;
         searchController?.hidesNavigationBarDuringPresentation = false
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        searchController.searchBar.frame = CGRectMake(0, 0, searchView.frame.width,searchView.frame.height)
     }
     
     @IBAction func route(sender: AnyObject) {
@@ -55,8 +56,10 @@ class AddressController: UIViewController {
         }
         
         let finishAction = UIAlertAction(title: "Route", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+            MapTasks.waypointsArray = (self.routeSpec?.waypointsArray)!
             MapTasks.getDirections(self.origin, destination: self.destination, waypoints: self.wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
                 if success {
+                    self.routeSpec!.title = nameAlert.textFields![0].text!
                     self.routeSpec?.order = MapTasks.order
                     self.routeSpec!.saveData()
                     self.routeSpec = RouteSpec(waypoints: Array<GMSPlace>())
@@ -89,7 +92,8 @@ extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
             routeSpec!.destination = place
         case 1:
             wayponts.append(place.formattedAddress + ",")
-            routeSpec!.waypoints!.append(place)
+            routeSpec!.waypoints.append(place)
+            routeSpec!.waypointsArray.append(Waypoint(phoneNumber: "None", info: "No Information", title: place.name))
             print(place)
         case 0:
             origin = place.formattedAddress + ","

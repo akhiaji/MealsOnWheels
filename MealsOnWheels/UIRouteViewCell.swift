@@ -15,7 +15,7 @@ class UIRouteViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
-    
     
 }

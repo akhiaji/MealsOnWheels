@@ -112,25 +112,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             self.drawRoute()
             self.displayRouteInfo()
             self.setZoom()
-            let step = MapTasks.steps[0]
-            let speech = step.direction
-            let utterance = AVSpeechUtterance(string: speech)
-            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-            let synthesizer = AVSpeechSynthesizer()
-            synthesizer.speakUtterance(utterance)
-            locationManager.startUpdatingLocation()
-            self.checkpointDist = step.distance * 0.9
-            let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
-            attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
-            directionView.attributedText = attrStr
-            drawRoute()
-            
-            
-            print(step.location)
-//            let region = CLCircularRegion(center: step.location, radius: step.distance * 1, identifier: "checkpoint one")
-//            locationManager.startMonitoringForRegion(region)
-//            checkPointNum = 1
-
+            if MapTasks.steps.count > 0 {
+                let step = MapTasks.steps[0]
+//                let speech = step.direction
+//                let utterance = AVSpeechUtterance(string: speech)
+//                utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+//                let synthesizer = AVSpeechSynthesizer()
+//                synthesizer.speakUtterance(utterance)
+                locationManager.startUpdatingLocation()
+                self.checkpointDist = step.distance * 0.9
+                let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+                attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
+                directionView.attributedText = attrStr
+                drawRoute()
+                
+                
+                print(step.location)
+                //            let region = CLCircularRegion(center: step.location, radius: step.distance * 1, identifier: "checkpoint one")
+                //            locationManager.startMonitoringForRegion(region)
+                //            checkPointNum = 1
+            }
         }
     }
     
@@ -160,7 +161,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if currentStep != nil {
             currentStep.map = nil
         }
-        currentStep = GMSCircle(position: step.location.coordinate, radius: CLLocationDistance(step.distance * 0.1))
+        currentStep = GMSCircle(position: prevStep.location.coordinate, radius: CLLocationDistance(step.distance * 0.1))
+        if step.waypoint.boolValue {
+            let waypoint = MapTasks.waypointsArray.removeFirst() as Waypoint
+            var infoString = "Phone: "
+            infoString += waypoint.phoneNumber
+            infoString += "\n"
+            infoString += "Details: "
+            infoString += waypoint.info
+            
+            let titleString = "Destination Reached \n" + waypoint.title
+            let waypointAlert = UIAlertController(title: titleString, message: infoString, preferredStyle: UIAlertControllerStyle.Alert)
+            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: {(AlertAction) -> Void in
+                
+            })
+            waypointAlert.addAction(closeAction)
+            presentViewController(waypointAlert, animated: true, completion: nil)
+        }
         currentStep.map = viewMap
         currentStep.fillColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.2)
         stuffOnMap.append(currentStep)

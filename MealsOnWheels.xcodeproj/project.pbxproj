@@ -17,6 +17,11 @@
 		49DF53181C74B55300B9C0A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53171C74B55300B9C0A5 /* User.swift */; };
 		49DF531A1C7505CB00B9C0A5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DF53191C7505CB00B9C0A5 /* Login.storyboard */; };
 		49DF531C1C7E2BD100B9C0A5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */; };
+		49DF531E1C98AC6000B9C0A5 /* Waypoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF531D1C98AC6000B9C0A5 /* Waypoint.swift */; };
+		49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF531F1C98FC6800B9C0A5 /* RouteDetails.swift */; };
+		49DF53221CA848DE00B9C0A5 /* WaypointViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */; };
+		49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53251CB0597D00B9C0A5 /* UserTableController.swift */; };
+		49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53271CB05B4500B9C0A5 /* UserCell.swift */; };
 		FA1F00981C21C79B0003B09B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F00971C21C79B0003B09B /* AppDelegate.swift */; };
 		FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F00991C21C79B0003B09B /* ViewController.swift */; };
 		FA1F009D1C21C79B0003B09B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1F009B1C21C79B0003B09B /* Main.storyboard */; };
@@ -46,6 +51,11 @@
 		49DF53171C74B55300B9C0A5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		49DF53191C7505CB00B9C0A5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		49DF531D1C98AC6000B9C0A5 /* Waypoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waypoint.swift; sourceTree = "<group>"; };
+		49DF531F1C98FC6800B9C0A5 /* RouteDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDetails.swift; sourceTree = "<group>"; };
+		49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewCell.swift; sourceTree = "<group>"; };
+		49DF53251CB0597D00B9C0A5 /* UserTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableController.swift; sourceTree = "<group>"; };
+		49DF53271CB05B4500B9C0A5 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		57B9A2C90E42C974FE2C172B /* Pods_MealsOnWheels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealsOnWheels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE64B86A16942EA0B83C632C /* Pods-MealsOnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.release.xcconfig"; sourceTree = "<group>"; };
 		F8F4F1AA7BC2FA20E0D4D735 /* Pods-MealsOnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +117,10 @@
 				49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */,
 				49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */,
 				49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */,
+				49DF531F1C98FC6800B9C0A5 /* RouteDetails.swift */,
+				49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */,
+				49DF53251CB0597D00B9C0A5 /* UserTableController.swift */,
+				49DF53271CB05B4500B9C0A5 /* UserCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -137,6 +151,7 @@
 				49824A531C6D3EB300EE7001 /* Views */,
 				49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */,
 				4982493F1C4EE5B100EE7001 /* Step.swift */,
+				49DF531D1C98AC6000B9C0A5 /* Waypoint.swift */,
 				FA1F00B91C24D1020003B09B /* MapTasks.swift */,
 				FA1F00971C21C79B0003B09B /* AppDelegate.swift */,
 				49DF53171C74B55300B9C0A5 /* User.swift */,
@@ -330,13 +345,18 @@
 			files = (
 				4910610A1C4C1E2400674084 /* AddressController.swift in Sources */,
 				FA1F00BA1C24D1020003B09B /* MapTasks.swift in Sources */,
+				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
+				49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */,
 				49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */,
 				49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */,
 				498249401C4EE5B100EE7001 /* Step.swift in Sources */,
 				FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */,
+				49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */,
 				49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */,
 				49DF531C1C7E2BD100B9C0A5 /* SignUpView.swift in Sources */,
+				49DF531E1C98AC6000B9C0A5 /* Waypoint.swift in Sources */,
 				49DF53181C74B55300B9C0A5 /* User.swift in Sources */,
+				49DF53221CA848DE00B9C0A5 /* WaypointViewCell.swift in Sources */,
 				49DF53141C72DC1B00B9C0A5 /* UIRouteViewCell.swift in Sources */,
 				FA1F00981C21C79B0003B09B /* AppDelegate.swift in Sources */,
 			);

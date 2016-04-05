@@ -14,13 +14,15 @@ class Step: NSObject {
     var direction: String!
     var distance: Double!
     var path: GMSPath!
+    var waypoint: Bool!
     
     
-    init(location: CLLocation, direction: String, distance: Double, path: GMSPath) {
+    init(location: CLLocation, direction: String, distance: Double, path: GMSPath, waypoint: Bool) {
         super.init()
         self.location = location
         self.direction = direction
         self.distance = distance
         self.path = path
+        self.waypoint = waypoint
     }
 }

@@ -37,6 +37,8 @@ class User: NSObject {
                     let prefs = NSUserDefaults.standardUserDefaults()
                     prefs.setValue(password, forKey: "pass")
                     prefs.setValue(email, forKey: "email")
+                    let userRef = self.ref.childByAppendingPath(User.uid).childByAppendingPath("email")
+                    userRef.setValue(email)
                     let pathRef = self.ref.childByAppendingPath(User.uid).childByAppendingPath("paths")
                     pathRef.observeEventType(.ChildAdded, withBlock: {snapshot in
                         for child: FDataSnapshot in snapshot.children.allObjects as! [FDataSnapshot] {

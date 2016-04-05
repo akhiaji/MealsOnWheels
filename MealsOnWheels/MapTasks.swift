@@ -52,6 +52,8 @@ class MapTasks : NSObject {
     
     static var order = Array<Int>()
     
+    static var waypointsArray = Array<Waypoint>()
+    
     
     override init() {
         super.init()
@@ -99,7 +101,7 @@ class MapTasks : NSObject {
     }
 
     
-    static func getDirections(origin: String!, destination: String!, waypoints: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
+    static func getDirections(origin: String!, destination: String!, var waypoints: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
         steps.removeAll()
         if(customPath != nil) {
             customPath.removeAllCoordinates()
@@ -108,9 +110,9 @@ class MapTasks : NSObject {
         if let originLocation = origin {
             if let destinationLocation = destination {
                 var directionsURLString = baseURLDirections + "origin=" + originLocation + "&destination=" + destinationLocation
-                if let routeWaypoints = waypoints {
+                if waypoints.count > 0  {
                     directionsURLString += "&waypoints=optimize:true"
-                    for waypoint in routeWaypoints {
+                    for waypoint in waypoints {
                         directionsURLString += "|"+waypoint
                     }
                 }
@@ -123,7 +125,8 @@ class MapTasks : NSObject {
                         let dictionary: Dictionary<NSObject, AnyObject> = try NSJSONSerialization.JSONObjectWithData(directionsData!, options: NSJSONReadingOptions.MutableContainers) as! Dictionary<NSObject, AnyObject>
                         let status = dictionary["status"] as! String
                         
-                        if status == "OK" {                            self.selectedRoute = (dictionary["routes"] as! Array<Dictionary<NSObject, AnyObject>>)[0]
+                        if status == "OK" {
+                            self.selectedRoute = (dictionary["routes"] as! Array<Dictionary<NSObject, AnyObject>>)[0]
                             self.overviewPolyline = self.selectedRoute["overview_polyline"] as! Dictionary<NSObject, AnyObject>
                             let legs = self.selectedRoute["legs"] as! Array<Dictionary<NSObject, AnyObject>>
                             self.order = self.selectedRoute["waypoint_order"] as! Array<Int>
@@ -138,6 +141,8 @@ class MapTasks : NSObject {
                             let path: GMSPath = GMSPath(fromEncodedPath: route)
                             customPath = GMSMutablePath(path: path)
                             customPath.removeAllCoordinates()
+                            waypoints.append(destination)
+                            var i = 0;
                             for leg in self.selectedRoute["legs"] as! Array<Dictionary<NSObject, AnyObject>> {
                                 for step in leg["steps"] as! Array<Dictionary<NSObject, AnyObject>> {
                                     let lat = step["end_location"]!["lat"] as! Double
@@ -152,9 +157,12 @@ class MapTasks : NSObject {
                                     let attributedString = NSAttributedString(string: encodedString, attributes: attributedOptions)
                                     let directions = attributedString.string
                                     print(directions)
-                                    let stepObject = Step(location: coord, direction: directions, distance: distance, path: GMSPath(fromEncodedPath: epath))
+                                    let stepObject = Step(location: coord, direction: directions, distance: distance, path: GMSPath(fromEncodedPath: epath), waypoint: false)
                                     self.steps.append(stepObject)
                                 }
+                                let lastStep = steps.removeLast()
+                                lastStep.waypoint = true
+                                self.steps.append(lastStep)
                             }
                             completionHandler(status: status, success: true)
                         } else {

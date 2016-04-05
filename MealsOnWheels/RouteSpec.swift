@@ -14,25 +14,32 @@ class RouteSpec: NSObject {
     var origin: GMSPlace?
     var destination: GMSPlace?
     var waypoints: Array<GMSPlace> = Array<GMSPlace>()
-    var uid: String?
+    var waypointsArray: Array<Waypoint> = Array<Waypoint>()
+    var uid = ""
     var order: Array<Int> = Array<Int>()
     var ref: Firebase! = Firebase(url: "https://mealsonwheels.firebaseio.com")
     let placesClient = GMSPlacesClient()
+    var title = ""
 
     init(dict: NSDictionary) {
         super.init()
-        uid = dict["uid"] as? String
-        for i in dict["waypoints"] as! NSArray {
-            placesClient.lookUpPlaceID(i as! String, callback: { (place: GMSPlace?, error: NSError?) -> Void in
-                if let error = error {
-                    print("lookup place id query error: \(error.localizedDescription)")
-                    return
-                }
-                if let place = place {
-                    self.waypoints.append(place)
-                }
-                
-            })
+        title = dict["title"] as! String
+        uid = (dict["uid"] as? String)!
+        
+        if dict["waypoints"] != nil {
+            for i in dict["waypoints"] as! NSArray {
+                let waypointDict = i as! NSDictionary
+                placesClient.lookUpPlaceID(waypointDict.allKeys[0] as! String, callback: { (place: GMSPlace?, error: NSError?) -> Void in
+                    if let error = error {
+                        print("lookup place id query error: \(error.localizedDescription)")
+                        return
+                    }
+                    if let place = place {
+                        self.waypoints.append(place)
+                    }
+                })
+                waypointsArray.append(Waypoint(dict: waypointDict.valueForKey(waypointDict.allKeys[0] as! String) as! NSDictionary))
+            }
         }
         
         placesClient.lookUpPlaceID(dict["origin"] as! String, callback: { (place: GMSPlace?, error: NSError?) -> Void in
@@ -82,7 +89,7 @@ class RouteSpec: NSObject {
         }
         
         
-        return "Start: \(origin)| End: \(destination)\n \(waypoints)"
+        return "Start: \(origin)| End: \(destination)\n \(waypointsS)"
     }
     
     func infoString() -> String{
@@ -94,11 +101,15 @@ class RouteSpec: NSObject {
     }
     
     func saveData() {
-        ref = ref.childByAppendingPath(User.uid).childByAppendingPath("paths").childByAutoId()
-        print(User.uid)
-        self.uid = ref.key
+        var saveRef = ref
+        if (self.uid == "") {
+            saveRef = ref.childByAppendingPath(User.uid).childByAppendingPath("paths").childByAutoId()
+            self.uid = saveRef.key
+        } else {
+            saveRef = ref.childByAppendingPath(User.uid).childByAppendingPath("paths").childByAppendingPath(self.uid)
+        }
         let path = ["data": toDict()] as NSDictionary
-        ref.setValue(path)
+        saveRef.setValue(path)
     }
     
     func toDict() -> NSDictionary {
@@ -106,20 +117,20 @@ class RouteSpec: NSObject {
         let list = NSMutableArray()
         if order.count == 0 {
             for var i = 0; i < waypoints.count; i++ {
-                list.addObject(waypoints[i].formattedAddress)
+                list.addObject(NSDictionary(dictionary: [waypoints[i].placeID: waypointsArray[i].toDict()]))
             }
         } else {
             for i in order {
-                list.addObject(waypoints[i].placeID)
+                list.addObject(NSDictionary(dictionary: [waypoints[i].placeID: waypointsArray[i].toDict()]))
             }
         }
         dict.setObject((origin?.placeID)!, forKey: "origin")
         dict.setObject(list, forKey: "waypoints")
         dict.setObject((destination?.placeID)!, forKey: "destination")
-        if let uid = uid {
-            dict.setObject(uid, forKey: "uid")
-        }
+        dict.setObject(uid, forKey: "uid")
+        dict.setObject(title, forKey: "title")
         return dict
     }
+
     
 }
