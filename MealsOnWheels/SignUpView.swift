@@ -21,7 +21,7 @@ class SignUpView: UIViewController {
     
     @IBAction func signUp(sender: AnyObject) {
         if password.text == confPassword.text {            SwiftLoader.show(title: "Loading...", animated: true)
-            ref.createUser(username.text, password: password.text, withCompletionBlock: { (NSError error) -> Void in
+            ref.createUser(username.text, password: password.text, withCompletionBlock: { (error) -> Void in
                 if (error != nil) {
                     let nameAlert = UIAlertController(title: "Failed Sign Up", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
                     nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))

@@ -5,7 +5,11 @@ use_frameworks!
 
 target 'MealsOnWheels' do
 pod ‘GoogleMaps’
-pod 'FMDBx'
+pod 'Firebase', '>= 2.5.0'
+pod 'EVReflection', '~> 2.6'
+pod 'SAConfettiView'
+pod 'KCFloatingActionButton', '~> 1.3'
+pod 'SwiftLoader'
 end
 
 target 'MealsOnWheelsTests' do

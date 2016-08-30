@@ -6,7 +6,6 @@
 //  Copyright © 2016 Akhilesh. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 import Firebase
@@ -20,7 +19,7 @@ class UserCell: UITableViewCell {
     var userID = ""
     override func awakeFromNib() {
         super.awakeFromNib()
-        let tapGesture = UITapGestureRecognizer(target: self, action: "share")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UserCell.share))
         emailLbl.addGestureRecognizer(tapGesture)
         self.addGestureRecognizer(tapGesture)
     }

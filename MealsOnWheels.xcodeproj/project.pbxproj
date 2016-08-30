@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		30FBAAEFD30D5C8D7F699C3B /* Pods_MealsOnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B9A2C90E42C974FE2C172B /* Pods_MealsOnWheels.framework */; };
 		4910610A1C4C1E2400674084 /* AddressController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491061091C4C1E2400674084 /* AddressController.swift */; };
+		4942537F1CF20D4300512832 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4942537E1CF20D4300512832 /* Place.swift */; };
 		498249401C4EE5B100EE7001 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4982493F1C4EE5B100EE7001 /* Step.swift */; };
 		49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */; };
 		49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A511C6D3CE600EE7001 /* RouteViews.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		491061091C4C1E2400674084 /* AddressController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressController.swift; sourceTree = "<group>"; };
+		4942537E1CF20D4300512832 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		4982493F1C4EE5B100EE7001 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSpec.swift; sourceTree = "<group>"; };
 		49824A511C6D3CE600EE7001 /* RouteViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViews.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				4982493F1C4EE5B100EE7001 /* Step.swift */,
 				49DF531D1C98AC6000B9C0A5 /* Waypoint.swift */,
 				FA1F00B91C24D1020003B09B /* MapTasks.swift */,
+				4942537E1CF20D4300512832 /* Place.swift */,
 				FA1F00971C21C79B0003B09B /* AppDelegate.swift */,
 				49DF53171C74B55300B9C0A5 /* User.swift */,
 				FA1F009B1C21C79B0003B09B /* Main.storyboard */,
@@ -352,6 +355,7 @@
 				498249401C4EE5B100EE7001 /* Step.swift in Sources */,
 				FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */,
 				49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */,
+				4942537F1CF20D4300512832 /* Place.swift in Sources */,
 				49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */,
 				49DF531C1C7E2BD100B9C0A5 /* SignUpView.swift in Sources */,
 				49DF531E1C98AC6000B9C0A5 /* Waypoint.swift in Sources */,

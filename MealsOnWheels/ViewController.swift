@@ -10,6 +10,9 @@ import UIKit
 import AVFoundation
 import GoogleMaps
 import Firebase
+import SAConfettiView
+import KCFloatingActionButton
+
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -27,8 +30,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var checkPointNum = 0
     var checkpointDist: Double = 0
     var currentStep: GMSCircle!
-    
-    
+    var backSteps = Array<Step>()
+    var stepNum = 0
+    let fab = KCFloatingActionButton()
+    var curentLocation:CLLocation? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
@@ -49,7 +54,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-//    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
+            self.curentLocation = newLocation
+    }
 //        var step = MapTasks.steps[0]
 //        let check = newLocation.distanceFromLocation(step.location)
 //        if(check < checkpointDist) {
@@ -107,6 +114,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         if MapTasks.originCoordinate != nil {
+//            if (fab.items.count > 0) {
+//                let item = KCFloatingActionButtonItem()
+//                item.buttonColor = UIColor.blueColor()
+//                item.title = "Add to End"
+//                item.handler = {x in MapTasks.sendToEnd()}
+//                fab.addItem(item: item)
+//            }
+            self.viewMap.addSubview(fab)
             self.clearMap()
             self.configureMapAndMarkersForRoute()
             self.drawRoute()
@@ -150,33 +165,80 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func nextButton(sender: AnyObject) {
-        if(MapTasks.steps.count == 0) {
+        if(MapTasks.steps.count == stepNum - 1) {
             return
         }
-        let prevStep = MapTasks.steps.removeFirst()
-        let step = MapTasks.steps[0]
+        self.stepNum += 1
+        let step = MapTasks.steps[self.stepNum]
         let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
         attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
         directionView.attributedText = attrStr
         if currentStep != nil {
             currentStep.map = nil
         }
-        currentStep = GMSCircle(position: prevStep.location.coordinate, radius: CLLocationDistance(step.distance * 0.1))
+        currentStep = GMSCircle(position: MapTasks.steps[self.stepNum - 1].location.coordinate, radius: CLLocationDistance(step.distance * 0.1))
         if step.waypoint.boolValue {
-            let waypoint = MapTasks.waypointsArray.removeFirst() as Waypoint
-            var infoString = "Phone: "
-            infoString += waypoint.phoneNumber
-            infoString += "\n"
-            infoString += "Details: "
-            infoString += waypoint.info
-            
-            let titleString = "Destination Reached \n" + waypoint.title
-            let waypointAlert = UIAlertController(title: titleString, message: infoString, preferredStyle: UIAlertControllerStyle.Alert)
-            let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: {(AlertAction) -> Void in
+            if MapTasks.waypointsArray.count != 0 {
+                let waypoint = MapTasks.waypointsArray.removeFirst() as Waypoint
+                var infoString = "Address: "
+                infoString += waypoint.address
+                infoString += " Phone: "
+                infoString += waypoint.phoneNumber
+                infoString += "\n"
+                infoString += "Details: "
+                infoString += waypoint.info
                 
-            })
-            waypointAlert.addAction(closeAction)
-            presentViewController(waypointAlert, animated: true, completion: nil)
+                let titleString = "Destination Reached \n" + waypoint.title
+                let waypointAlert = UIAlertController(title: titleString, message: infoString, preferredStyle: UIAlertControllerStyle.Alert)
+                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: {(AlertAction) -> Void in
+                    
+                })
+                let addToEnd = UIAlertAction(title: "Add to End", style: UIAlertActionStyle.Default, handler: {(AlertAction) -> Void in
+                    let geocoder = CLGeocoder()
+                    geocoder.reverseGeocodeLocation(self.curentLocation!, completionHandler: {(placeMarks,error) -> Void in
+                        print(placeMarks![0].addressDictionary)
+                    })
+                    MapTasks.sendToEnd(waypoint, completionHandler: {(status, success ) -> Void in
+                        if success {
+                            self.clearMap()
+                            self.configureMapAndMarkersForRoute()
+                            self.drawRoute()
+                            self.displayRouteInfo()
+                            self.setZoom()
+                            if MapTasks.steps.count > 0 {
+                                let step = MapTasks.steps[0]
+                                //                let speech = step.direction
+                                //                let utterance = AVSpeechUtterance(string: speech)
+                                //                utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+                                //                let synthesizer = AVSpeechSynthesizer()
+                                //                synthesizer.speakUtterance(utterance)
+                                self.locationManager.startUpdatingLocation()
+                                self.checkpointDist = step.distance * 0.9
+                                let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+                                attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
+                                self.directionView.attributedText = attrStr
+                                self.drawRoute()
+                            }
+                        }
+                    })
+                })
+                waypointAlert.addAction(closeAction)
+                waypointAlert.addAction(addToEnd)
+                presentViewController(waypointAlert, animated: true, completion: nil)
+            } else {
+                let confettiView = SAConfettiView(frame: self.view.bounds)
+                self.view.addSubview(confettiView)
+                confettiView.startConfetti()
+                let waypointAlert = UIAlertController(title: "Finished Route", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                let closeAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel, handler: {(AlertAction) -> Void in
+                    confettiView.stopConfetti()
+                })
+                waypointAlert.addAction(closeAction)
+                presentViewController(waypointAlert, animated: true, completion: nil)
+                
+                
+            }
+            
         }
         currentStep.map = viewMap
         currentStep.fillColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.2)
@@ -184,6 +246,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let bounds = GMSCoordinateBounds(path: step.path)
         viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
     }
+    
+    
+    @IBAction func backButton(sender: AnyObject) {
+        if(backSteps.count == 1) {
+            return
+        }
+        stepNum -= 1
+        let step = MapTasks.steps[stepNum]
+        let attrStr = try! NSMutableAttributedString(data: step.direction.dataUsingEncoding(NSUnicodeStringEncoding, allowLossyConversion: true)!, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+        attrStr.addAttribute(NSFontAttributeName, value: UIFont(name: "Georgia", size: 20.0)!, range: NSRange(location: 0, length: attrStr.length))
+        directionView.attributedText = attrStr
+        if currentStep != nil {
+            currentStep.map = nil
+        }
+        if stepNum != 0 {
+            currentStep = GMSCircle(position: MapTasks.steps[stepNum - 1].location.coordinate, radius: CLLocationDistance(step.distance * 0.1))
+            currentStep.map = viewMap
+            currentStep.fillColor = UIColor(red: 0, green: 0, blue: 1, alpha: 0.2)
+            stuffOnMap.append(currentStep)
+        }
+        let bounds = GMSCoordinateBounds(path: step.path)
+        viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
+    }
+
     
     func clearMap() {
         for stuff in stuffOnMap {
@@ -195,7 +281,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func setZoom() {
         let route = MapTasks.overviewPolyline["points"] as! String
-        let path: GMSPath = GMSPath(fromEncodedPath: route)
+        let path: GMSPath = GMSPath(fromEncodedPath: route)!
         let bounds = GMSCoordinateBounds(path: path)
         viewMap.moveCamera(GMSCameraUpdate.fitBounds(bounds))
         print("zoom")
@@ -214,7 +300,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let origin = addressAlert.textFields![0].text
             let destination = addressAlert.textFields![1].text
             
-            MapTasks.getDirections(origin, destination: destination, waypoints: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
+            MapTasks.getDirections(origin, destination: destination, waypointsTemp: nil, travelMode: nil, completionHandler: { (status, success) -> Void in
                 if success {
                     self.clearMap()
                     self.configureMapAndMarkersForRoute()

@@ -57,7 +57,7 @@ class AddressController: UIViewController {
         
         let finishAction = UIAlertAction(title: "Route", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
             MapTasks.waypointsArray = (self.routeSpec?.waypointsArray)!
-            MapTasks.getDirections(self.origin, destination: self.destination, waypoints: self.wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
+            MapTasks.getDirections(self.origin, destination: self.destination, waypointsTemp: self.wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
                 if success {
                     self.routeSpec!.title = nameAlert.textFields![0].text!
                     self.routeSpec?.order = MapTasks.order
@@ -67,7 +67,8 @@ class AddressController: UIViewController {
                 print(status)
             })
             
-            self.performSegueWithIdentifier("showMap", sender: sender)
+//            self.performSegueWithIdentifier("showMap", sender: sender)
+            self.navigationController?.popToRootViewControllerAnimated(true) 
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
@@ -80,7 +81,7 @@ class AddressController: UIViewController {
 }
 
 extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
-    func resultsController(resultsController: GMSAutocompleteResultsViewController!, didAutocompleteWithPlace place: GMSPlace!) {
+    func resultsController(resultsController: GMSAutocompleteResultsViewController, didAutocompleteWithPlace place: GMSPlace) {
         if (routeSpec == nil) {
             routeSpec = RouteSpec(waypoints: Array<GMSPlace>())
         }
@@ -88,16 +89,16 @@ extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
         print(place.formattedAddress)
         switch(addressType.selectedSegmentIndex) {
         case 2:
-            destination = place.formattedAddress + ","
-            routeSpec!.destination = place
+            destination = place.formattedAddress! + ","
+            routeSpec!.destination = Place(place: place)
         case 1:
-            wayponts.append(place.formattedAddress + ",")
-            routeSpec!.waypoints.append(place)
-            routeSpec!.waypointsArray.append(Waypoint(phoneNumber: "None", info: "No Information", title: place.name))
+            wayponts.append(place.formattedAddress! + ",")
+            routeSpec!.waypoints.append(Place(place: place))
+            routeSpec!.waypointsArray.append(Waypoint(address: place.formattedAddress!, phoneNumber: "None", info: "No Information", title: place.name))
             print(place)
         case 0:
-            origin = place.formattedAddress + ","
-            routeSpec!.origin = place
+            origin = place.formattedAddress! + ","
+            routeSpec!.origin = Place(place: place)
         default:
             true
         }
@@ -105,7 +106,7 @@ extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
         label.text = routeSpec!.toString()
     }
     
-    func resultsController(resultsController: GMSAutocompleteResultsViewController!, didFailAutocompleteWithError error: NSError!) {
+    func resultsController(resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: NSError) {
         print("Error: ", error.description)
     }
 }

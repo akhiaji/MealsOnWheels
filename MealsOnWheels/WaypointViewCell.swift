@@ -36,7 +36,7 @@ class WaypointViewCell: UITableViewCell, UITextViewDelegate {
         
     }
     @IBAction func changeName(sender: UITextField) {
-        waypoint?.title = nameLbl.text
+        waypoint?.title = nameTxtFld.text
         route?.saveData()
     }
     @IBAction func changePhone(sender: UITextField) {

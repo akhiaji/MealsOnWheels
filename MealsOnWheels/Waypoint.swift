@@ -11,17 +11,20 @@ import GoogleMaps
 
 
 class Waypoint {
+    var address: String!
     var phoneNumber: String!
     var info: String!
     var title: String!
     
-    init(phoneNumber: String, info: String, title: String) {
+    init(address: String, phoneNumber: String, info: String, title: String) {
+        self.address = address
         self.info = info
         self.phoneNumber = phoneNumber
         self.title = title
     }
     
     init(dict: NSDictionary) {
+        self.address = dict["address"] as! String
         self.phoneNumber = dict["phone"]! as! String
         self.info = dict["info"]! as! String
         self.title = dict["title"]! as! String
@@ -29,6 +32,7 @@ class Waypoint {
     
     func toDict() -> NSDictionary {
         let dict = NSMutableDictionary()
+        dict.setObject(address!, forKey: "address")
         dict.setObject(phoneNumber!, forKey: "phone")
         dict.setObject(info!, forKey: "info")
         dict.setObject(title!, forKey: "title")

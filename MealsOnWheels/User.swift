@@ -40,10 +40,23 @@ class User: NSObject {
                     let userRef = self.ref.childByAppendingPath(User.uid).childByAppendingPath("email")
                     userRef.setValue(email)
                     let pathRef = self.ref.childByAppendingPath(User.uid).childByAppendingPath("paths")
+                    User.routes.removeAll()
                     pathRef.observeEventType(.ChildAdded, withBlock: {snapshot in
                         for child: FDataSnapshot in snapshot.children.allObjects as! [FDataSnapshot] {
                             let dic = child.value as! NSDictionary
                             User.routes.append(RouteSpec.init(dict: dic))
+                        }
+                    })
+                    pathRef.observeEventType(.ChildRemoved, withBlock: {snapshot in
+                        for child: FDataSnapshot in snapshot.children.allObjects as! [FDataSnapshot] {
+                            let dic = child.value as! NSDictionary
+                            let routeSpec = RouteSpec.init(dict: dic["data"]  as! NSDictionary)
+                            for i in 0 ..< User.routes.count {
+                                let route = User.routes[i]
+                                if routeSpec == route {
+                                    User.routes.removeAtIndex(i)
+                                }
+                            }
                         }
                     })
                     
