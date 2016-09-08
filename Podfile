@@ -8,8 +8,9 @@ pod ‘GoogleMaps’
 pod 'Firebase', '>= 2.5.0'
 pod 'EVReflection', '~> 2.6'
 pod 'SAConfettiView'
-pod 'KCFloatingActionButton', '~> 1.3'
+pod 'KCFloatingActionButton', '~> 1.3’
 pod 'SwiftLoader'
+pod 'SwiftyJSON'
 end
 
 target 'MealsOnWheelsTests' do
