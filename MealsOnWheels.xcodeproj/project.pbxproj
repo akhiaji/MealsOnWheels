@@ -12,6 +12,7 @@
 		498249401C4EE5B100EE7001 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4982493F1C4EE5B100EE7001 /* Step.swift */; };
 		49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */; };
 		49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A511C6D3CE600EE7001 /* RouteViews.swift */; };
+		4994ECA31D81E21F0095DB17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4994ECA21D81E21F0095DB17 /* GoogleService-Info.plist */; };
 		49DF53141C72DC1B00B9C0A5 /* UIRouteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */; };
 		49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */; };
 		49DF53181C74B55300B9C0A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53171C74B55300B9C0A5 /* User.swift */; };
@@ -50,6 +51,7 @@
 		4982493F1C4EE5B100EE7001 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSpec.swift; sourceTree = "<group>"; };
 		49824A511C6D3CE600EE7001 /* RouteViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViews.swift; sourceTree = "<group>"; };
+		4994ECA21D81E21F0095DB17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRouteViewCell.swift; sourceTree = "<group>"; };
 		49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConroller.swift; sourceTree = "<group>"; };
 		49DF53171C74B55300B9C0A5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				FA1F00961C21C79B0003B09B /* Info.plist */,
+				4994ECA21D81E21F0095DB17 /* GoogleService-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				FA1F00901C21C79B0003B09B /* Resources */,
 				9BBD7AB02008C8AC45A803E1 /* 📦 Embed Pods Frameworks */,
 				A79AC557639CBCC1422C216E /* 📦 Copy Pods Resources */,
+				FD6A7B2EF81D01026BDC2447 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,6 +294,7 @@
 			files = (
 				49DF531A1C7505CB00B9C0A5 /* Login.storyboard in Resources */,
 				FA1F009D1C21C79B0003B09B /* Main.storyboard in Resources */,
+				4994ECA31D81E21F0095DB17 /* GoogleService-Info.plist in Resources */,
 				FA1F00A21C21C79B0003B09B /* LaunchScreen.xib in Resources */,
 				FA1F009F1C21C79B0003B09B /* Images.xcassets in Resources */,
 			);
@@ -393,6 +398,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD6A7B2EF81D01026BDC2447 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
