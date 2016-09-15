@@ -1,3 +1,4 @@
+
 //
 //  MapTask.swift
 //  MealsOnWheels
@@ -11,14 +12,6 @@ import GoogleMaps
 
 class MapTasks : NSObject {
     static let baseURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?"
-    
-    static var lookupAddressResults: Dictionary<NSObject, AnyObject>!
-    
-    static var fetchedFormattedAddress: String!
-    
-    static var fetchedAddressLongitude: Double!
-    
-    static var fetchedAddressLatitude: Double!
     
     static let baseURLDirections = "https://maps.googleapis.com/maps/api/directions/json?"
     
@@ -66,16 +59,15 @@ class MapTasks : NSObject {
     static func getDirections(origin: String!, destination: String!, waypointsTemp: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
         
         
-//        var routeString = "comgooglemaps-x-callback://"
-//        routeString += "?daddr" + destination
-//        routeString += "&x-success=MOWapp://?resume=true&x-source=MOW";
-//        routeString = routeString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-//        let directionsURL = NSURL(fileURLWithPath:routeString);
-//        UIApplication.sharedApplication().openURL(directionsURL)
+        let htmlDestination = destination.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
-        if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
-            UIApplication.sharedApplication().openURL(NSURL(string:
-                "comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic")!)
+
+        let directionsRequest = "comgooglemaps-x-callback://" +
+        "?daddr=" + htmlDestination +
+        "&x-success=MOWapp://?resume=true&x-source=MOW"
+        let directionsURL = NSURL(string:directionsRequest);
+        if (UIApplication.sharedApplication().canOpenURL( NSURL(string: "comgooglemaps-x-callback://")!)) {
+            UIApplication.sharedApplication().openURL(directionsURL!)
         } else {
             print("Can't use comgooglemaps://");
         }
@@ -102,9 +94,8 @@ class MapTasks : NSObject {
                         directionsURLString += "|"+(waypoint as! String)
                     }
                 }
-                if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
-                    UIApplication.sharedApplication().openURL(NSURL(string:
-                        "comgooglemaps://?center=40.765819,-73.975866&zoom=14&views=traffic")!)
+                if (UIApplication.sharedApplication().canOpenURL( NSURL(string: "comgooglemaps-x-callback://")!)) {
+                    UIApplication.sharedApplication().openURL(directionsURL!)
                 } else {
                     print("Can't use comgooglemaps://");
                 }
