@@ -16,8 +16,11 @@ struct MWConstants {
     static let screenHeight = UIScreen.mainScreen().bounds.height
     static let screenWidth = UIScreen.mainScreen().bounds.width
     
-    static let loginFieldsOffset = CGFloat(15.0)
+    static let btnWidth = CGFloat(100)
+    
+    static let loginFieldsOffset = CGFloat((screenWidth / 2)-btnWidth)
     static let logoImg = UIImage(named: "upload-empty")
+    
     
     struct colors {
         static let loginBackground = UIColor.blueColor()
