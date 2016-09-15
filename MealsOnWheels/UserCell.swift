@@ -15,7 +15,7 @@ class UserCell: UITableViewCell {
     @IBOutlet var emailLbl: UILabel!
     var routeSpec: RouteSpec?
     var user: NSDictionary?
-    let ref: Firebase! = Firebase(url: "https://mealsonwheels.firebaseio.com")
+    var ref = FIRDatabase.database().reference()
     var userID = ""
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,7 +31,7 @@ class UserCell: UITableViewCell {
     }
     
     func share() {
-        let routeRef = ref.childByAppendingPath(user!.allKeys[0] as! String).childByAppendingPath("paths").childByAppendingPath(routeSpec!.uid)
+        let routeRef = ref.child(user!.allKeys[0] as! String).child("paths").child(routeSpec!.uid)
         
         routeRef.observeEventType(.Value, withBlock: {snapshot in
             routeRef.removeAllObservers()

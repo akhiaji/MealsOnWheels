@@ -16,7 +16,7 @@ class RouteSpec: NSObject {
     var waypointsArray: Array<Waypoint> = Array<Waypoint>()
     var uid = ""
     var order: Array<Int> = Array<Int>()
-    var ref: Firebase! = Firebase(url: "https://mealsonwheels.firebaseio.com")
+    var ref = FIRDatabase.database().reference()
     let placesClient = GMSPlacesClient()
     var title = ""
     var enforceOrder = false
@@ -112,10 +112,10 @@ class RouteSpec: NSObject {
     func saveData() {
         var saveRef = ref
         if (self.uid == "") {
-            saveRef = ref.childByAppendingPath(User.uid).childByAppendingPath("paths").childByAutoId()
+            saveRef = ref.child(User.uid).child("paths").childByAutoId()
             self.uid = saveRef.key
         } else {
-            saveRef = ref.childByAppendingPath(User.uid).childByAppendingPath("paths").childByAppendingPath(self.uid)
+            saveRef = ref.child(User.uid).child("paths").child(self.uid)
         }
         let path = ["data": toDict()] as NSDictionary
         saveRef.setValue(path)

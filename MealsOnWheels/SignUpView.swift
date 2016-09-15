@@ -16,19 +16,19 @@ class SignUpView: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var confPassword: UITextField!
-    let ref = Firebase(url: "https://mealsonwheels.firebaseio.com/")
+    var ref = FIRDatabase.database().reference()
     var authorized = false
     
     @IBAction func signUp(sender: AnyObject) {
         if password.text == confPassword.text {            SwiftLoader.show(title: "Loading...", animated: true)
-            ref.createUser(username.text, password: password.text, withCompletionBlock: { (error) -> Void in
+            FIRAuth.auth()!.createUserWithEmail(username.text!, password: password.text!, completion: { (user, error) -> Void in
                 if (error != nil) {
-                    let nameAlert = UIAlertController(title: "Failed Sign Up", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                    let nameAlert = UIAlertController(title: "Failed Sign Up", message: error!.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
                     nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
                     self.presentViewController(nameAlert, animated: true, completion: nil)
                 } else {
                     self.authorized = true
-                    self.ref.authUser(self.username.text, password: self.password.text) {
+                    FIRAuth.auth()?.signInWithEmail(self.username.text!, password: self.password.text!) {
                         error, authData in
                         if error != nil {
                             // an error occured while attempting login

@@ -14,13 +14,13 @@ import Firebase
 class UserTableController: UITableViewController {
     
     var objectNum = -1
-    let ref: Firebase! = Firebase(url: "https://mealsonwheels.firebaseio.com")
+    var ref = FIRDatabase.database().reference()
     var users: Array<NSDictionary> = Array<NSDictionary>()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         ref.observeEventType(.Value, withBlock: {snapshot in
-            for child: FDataSnapshot in snapshot.children.allObjects as! [FDataSnapshot] {
+            for child: FIRDataSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
                 let dict = child.value as! NSDictionary
                 
                 self.tableView.beginUpdates()
@@ -52,7 +52,7 @@ class UserTableController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! UserCell
         let user = users[indexPath.row]
-        let routeRef = ref.childByAppendingPath(user.allKeys[0] as! String).childByAppendingPath("paths").childByAppendingPath(User.routes[objectNum].uid)
+        let routeRef = ref.child(user.allKeys[0] as! String).child("paths").child(User.routes[objectNum].uid)
         routeRef.observeEventType(.Value, withBlock: {snapshot in
             if snapshot.exists() {
                 let text = NSMutableAttributedString(string: user[user.allKeys[0] as! String] as! String)

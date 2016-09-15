@@ -72,8 +72,6 @@ class MapTasks : NSObject {
 //        routeString = routeString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
 //        let directionsURL = NSURL(fileURLWithPath:routeString);
 //        UIApplication.sharedApplication().openURL(directionsURL)
-//        
-        print("hiii")
         
         if (UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!)) {
             UIApplication.sharedApplication().openURL(NSURL(string:
