@@ -13,14 +13,6 @@ import GoogleMaps
 class MapTasks : NSObject {
     static let baseURLGeocode = "https://maps.googleapis.com/maps/api/geocode/json?"
     
-    static var lookupAddressResults: Dictionary<NSObject, AnyObject>!
-    
-    static var fetchedFormattedAddress: String!
-    
-    static var fetchedAddressLongitude: Double!
-    
-    static var fetchedAddressLatitude: Double!
-    
     static let baseURLDirections = "https://maps.googleapis.com/maps/api/directions/json?"
     
     static var selectedRoute: Dictionary<NSObject, AnyObject>!
