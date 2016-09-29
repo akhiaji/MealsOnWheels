@@ -24,5 +24,7 @@ struct MWConstants {
     
     struct colors {
         static let loginBackground = UIColor.blue
+        static let loginDarkGradient = UIColor(r: 24, g: 51, b: 78, a: 1.0)
+        static let loginLightGradient = UIColor(r: 36, g: 77, b: 117, a: 1.0)
     }
 }

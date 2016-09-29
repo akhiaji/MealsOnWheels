@@ -29,6 +29,8 @@
 		878CEDCF1D8B0B780026916B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDCE1D8B0B780026916B /* UIColor+Extensions.swift */; };
 		878CEDD11D8B0B940026916B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDD01D8B0B940026916B /* UIView+Extensions.swift */; };
 		878CEDD31D8B0BB90026916B /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */; };
+		87AE14AB1D9D7D0D0046B1C2 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */; };
+		87AE14AD1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */; };
 		AAC86B7EDDF4A9D2F75BDC79 /* Pods_MealsOnWheelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E4093AC0FDF52065190BE2 /* Pods_MealsOnWheelsTests.framework */; };
 		B4B4E066411856D054A208E0 /* Pods_MealsOnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA5F5A60EA2ABC1F2D32E /* Pods_MealsOnWheels.framework */; };
 		CD8B9C2C1D8B237E000370CF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B9C2B1D8B237E000370CF /* MainTabView.swift */; };
@@ -83,6 +85,8 @@
 		878CEDCE1D8B0B780026916B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		878CEDD01D8B0B940026916B /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewButtonHub.swift; sourceTree = "<group>"; };
 		BCCA057856D40A50A650A765 /* Pods-MealsOnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.debug.xcconfig"; sourceTree = "<group>"; };
 		CD8B9C2B1D8B237E000370CF /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */,
 				49DF53251CB0597D00B9C0A5 /* UserTableController.swift */,
 				49DF53271CB05B4500B9C0A5 /* UserCell.swift */,
+				87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			children = (
 				49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */,
 				CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */,
+				87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 			files = (
 				CD8B9C321D8B2B3D000370CF /* CurrentRouteView.swift in Sources */,
 				878CEDCB1D8B0A800026916B /* MWConstants.swift in Sources */,
+				87AE14AB1D9D7D0D0046B1C2 /* TitleViewController.swift in Sources */,
 				CD8B9C301D8B2A97000370CF /* MainView.swift in Sources */,
 				CD8B9C2C1D8B237E000370CF /* MainTabView.swift in Sources */,
 				4910610A1C4C1E2400674084 /* AddressController.swift in Sources */,
@@ -601,6 +608,7 @@
 				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
 				878CEDCF1D8B0B780026916B /* UIColor+Extensions.swift in Sources */,
 				CDF17AF61D8B40D70095337F /* RegistrationEmailController.swift in Sources */,
+				87AE14AD1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift in Sources */,
 				CDF17AF71D8B40D70095337F /* RegistrationEmailView.swift in Sources */,
 				49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */,
 				49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */,

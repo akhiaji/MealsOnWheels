@@ -24,9 +24,9 @@ class RegistrationEmailView: UIView {
         
         passConfirmTF.placeholder = "Confirm Password"
         
-        emailTF.backgroundColor = UIColor.whiteColor()
-        passTF.backgroundColor = UIColor.whiteColor()
-        passConfirmTF.backgroundColor = UIColor.whiteColor()
+        emailTF.backgroundColor = UIColor.white
+        passTF.backgroundColor = UIColor.white
+        passConfirmTF.backgroundColor = UIColor.white
         
     }
     
@@ -47,11 +47,11 @@ class RegistrationEmailView: UIView {
         
         self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|-20-[emailTF]-20-[passTF]-20-[confirmTF]", views: viewsDict))
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[emailTF]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(describing: MWConstants.loginFieldsOffset))-[emailTF]-\(String(describing: MWConstants.loginFieldsOffset))-|", views: viewsDict))
     
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[passTF]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(describing: MWConstants.loginFieldsOffset))-[passTF]-\(String(describing: MWConstants.loginFieldsOffset))-|", views: viewsDict))
     
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[confirmTF]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(describing: MWConstants.loginFieldsOffset))-[confirmTF]-\(String(describing: MWConstants.loginFieldsOffset))-|", views: viewsDict))
     }
     
     

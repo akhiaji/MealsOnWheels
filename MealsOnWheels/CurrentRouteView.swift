@@ -25,7 +25,7 @@ class CurrentRouteView: UIView {
     
     func configureImageViews() {
         logoImgView.image = MWConstants.logoImg
-        logoImgView.contentMode = .ScaleAspectFit
+        logoImgView.contentMode = .scaleAspectFit
     }
     
     func configureTextFields() {
@@ -35,13 +35,13 @@ class CurrentRouteView: UIView {
     }
     
     func configureButtons() {
-        loginBtn.setTitle("Login", forState: .Normal)
-        loginBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        loginBtn.backgroundColor = UIColor.clearColor()
+        loginBtn.setTitle("Login", for: .normal)
+        loginBtn.setTitleColor(UIColor.white, for: .normal)
+        loginBtn.backgroundColor = UIColor.clear
         
-        signUpBtn.setTitle("Sign Up", forState: .Normal)
-        signUpBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        signUpBtn.backgroundColor = UIColor.clearColor()
+        signUpBtn.setTitle("Sign Up", for: .normal)
+        signUpBtn.setTitleColor(UIColor.white, for: .normal)
+        signUpBtn.backgroundColor = UIColor.clear
     }
     
     func configureView() {
@@ -58,13 +58,13 @@ class CurrentRouteView: UIView {
             "psTF"  :   passTF,
             "login" :   loginBtn,
             "signup":   signUpBtn
-        ]
+        ] as [String : Any]
         
-        self.prepareViewsForAutoLayout(viewsDict)
+        self.prepareViewsForAutoLayout(viewsDict as! [String : UIView])
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|-20-[logo]-20-[login]", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|-20-[logo]-20-[login]", views: viewsDict as [String : AnyObject]))
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[logo]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(describing: MWConstants.loginFieldsOffset))-[logo]-\(String(describing: MWConstants.loginFieldsOffset))-|", views: viewsDict as [String : AnyObject]))
         
         
     }

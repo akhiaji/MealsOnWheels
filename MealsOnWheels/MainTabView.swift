@@ -16,13 +16,13 @@ class MainTabView: UIView {
     var myRoutes = UIButton()
     
     func configureButtons() {
-        currentRoute.setTitle("Current Route", forState: .Normal)
-        currentRoute.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        currentRoute.backgroundColor = UIColor.darkGrayColor()
+        currentRoute.setTitle("Current Route", for: .normal)
+        currentRoute.setTitleColor(UIColor.white, for: .normal)
+        currentRoute.backgroundColor = UIColor.darkGray
         
-        myRoutes.setTitle("My Routes", forState: .Normal)
-        myRoutes.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        myRoutes.backgroundColor = UIColor.grayColor()
+        myRoutes.setTitle("My Routes", for: .normal)
+        myRoutes.setTitleColor(UIColor.white, for: .normal)
+        myRoutes.backgroundColor = UIColor.gray
     }
     
     func configureView() {
@@ -41,7 +41,7 @@ class MainTabView: UIView {
         self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|[currBtn]|", views: viewsDict))
         self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|[myRoutBtn]|", views: viewsDict))
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|[currBtn(==\(String(MWConstants.screenWidth/2)))]-[myRoutBtn(==\(String(MWConstants.screenWidth/2)))]|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|[currBtn(==\(String(describing: MWConstants.screenWidth/2)))]-[myRoutBtn(==\(String(describing: MWConstants.screenWidth/2)))]|", views: viewsDict))
         
         
     }

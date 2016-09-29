@@ -22,14 +22,14 @@ class MainView: UIView {
         let viewsDict = [
             "tabView"  :   tabView,
             "currView"  :   currentRouteView
-        ]
+        ] as [String : Any]
         
-        self.prepareViewsForAutoLayout(viewsDict)
+        self.prepareViewsForAutoLayout(viewsDict as! [String : UIView])
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|[currView]-[tabView(==\(String(MWConstants.screenHeight/8)))]|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|[currView]-[tabView(==\(String(describing: MWConstants.screenHeight/8)))]|", views: viewsDict as [String : AnyObject]))
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|[tabView]|", views: viewsDict))
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|[currView]|", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|[tabView]|", views: viewsDict as [String : AnyObject]))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|[currView]|", views: viewsDict as [String : AnyObject]))
         
         
     }

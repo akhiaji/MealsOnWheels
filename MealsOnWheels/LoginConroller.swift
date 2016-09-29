@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftLoader
 
 class LoginController: UIViewController {
     
