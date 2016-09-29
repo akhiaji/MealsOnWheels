@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  CurrentRouteView.swift
 //  MealsOnWheels
 //
 //  Created by Sahaj Bhatt on 9/15/16.
@@ -9,39 +9,39 @@
 import Foundation
 import UIKit
 
-class LoginView: UIView {
+class CurrentRouteView: UIView {
     
     //Image Views
     var logoImgView = UIImageView()
     
     //Text Fields
     var emailTF = UITextField()
-    var passwordTF = UITextField()
+    var passTF = UITextField()
     
     //Buttons
     var loginBtn = UIButton()
     var signUpBtn = UIButton()
-    var forgotPasswordBtn = UIButton()
+    var forgotPassBtn = UIButton()
     
     func configureImageViews() {
         logoImgView.image = MWConstants.logoImg
-        logoImgView.contentMode = .scaleAspectFit
+        logoImgView.contentMode = .ScaleAspectFit
     }
     
     func configureTextFields() {
         emailTF.placeholder = "Email"
         
-        passwordTF.placeholder = "Password"
+        passTF.placeholder = "Pass"
     }
     
     func configureButtons() {
-        loginBtn.setTitle("Login", for: UIControlState())
-        loginBtn.setTitleColor(UIColor.blue, for: UIControlState())
-        loginBtn.backgroundColor = UIColor.white
+        loginBtn.setTitle("Login", forState: .Normal)
+        loginBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        loginBtn.backgroundColor = UIColor.clearColor()
         
-        signUpBtn.setTitle("Sign Up", for: UIControlState())
-        signUpBtn.setTitleColor(UIColor.blue, for: UIControlState())
-        signUpBtn.backgroundColor = UIColor.white
+        signUpBtn.setTitle("Sign Up", forState: .Normal)
+        signUpBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        signUpBtn.backgroundColor = UIColor.clearColor()
     }
     
     func configureView() {
@@ -55,22 +55,17 @@ class LoginView: UIView {
         let viewsDict = [
             "logo"  :   logoImgView,
             "emTF"  :   emailTF,
-            "psTF"  :   passwordTF,
+            "psTF"  :   passTF,
             "login" :   loginBtn,
             "signup":   signUpBtn
-        ] as [String : Any]
+        ]
         
         self.prepareViewsForAutoLayout(viewsDict)
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|-20-[logo]-20-[login]-20-[signup]", views: viewsDict))
+        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("V:|-20-[logo]-20-[login]", views: viewsDict))
         
         self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[logo]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[login(==100)]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
-        
-        self.addConstraints(NSLayoutConstraint.constraintsWithSimpleFormat("H:|-\(String(MWConstants.loginFieldsOffset))-[signup]-\(String(MWConstants.loginFieldsOffset))-|", views: viewsDict))
-        
-
         
     }
     

@@ -19,31 +19,31 @@ class SignUpView: UIViewController {
     var ref = FIRDatabase.database().reference()
     var authorized = false
     
-    @IBAction func signUp(sender: AnyObject) {
+    @IBAction func signUp(_ sender: AnyObject) {
         if password.text == confPassword.text {            SwiftLoader.show(title: "Loading...", animated: true)
-            FIRAuth.auth()!.createUserWithEmail(username.text!, password: password.text!, completion: { (user, error) -> Void in
+            FIRAuth.auth()!.createUser(withEmail: username.text!, password: password.text!, completion: { (user, error) -> Void in
                 if (error != nil) {
-                    let nameAlert = UIAlertController(title: "Failed Sign Up", message: error!.localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
-                    nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-                    self.presentViewController(nameAlert, animated: true, completion: nil)
+                    let nameAlert = UIAlertController(title: "Failed Sign Up", message: error!.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+                    self.present(nameAlert, animated: true, completion: nil)
                 } else {
                     self.authorized = true
-                    FIRAuth.auth()?.signInWithEmail(self.username.text!, password: self.password.text!) {
+                    FIRAuth.auth()?.signIn(withEmail: self.username.text!, password: self.password.text!) {
                         error, authData in
                         if error != nil {
                             // an error occured while attempting login
                         } else {
                             User.init(email: self.username.text!, password: self.password.text!, errorCase: {() -> Void in
                                 SwiftLoader.hide()
-                                let nameAlert = UIAlertController(title: "Failed Sign Up", message: "Incorrect Username or password", preferredStyle: UIAlertControllerStyle.Alert)
+                                let nameAlert = UIAlertController(title: "Failed Sign Up", message: "Incorrect Username or password", preferredStyle: UIAlertControllerStyle.alert)
                                 nameAlert
-                                nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-                                self.presentViewController(nameAlert, animated: true, completion: nil)
+                                nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+                                self.present(nameAlert, animated: true, completion: nil)
                                 self.authorized = false
                                 }, closure: {() -> Void in
                                     SwiftLoader.hide()
                                     self.authorized = true
-                                    self.performSegueWithIdentifier("signupcomplete", sender: self)
+                                    self.performSegue(withIdentifier: "signupcomplete", sender: self)
                             })
                         }
                     }
@@ -52,7 +52,7 @@ class SignUpView: UIViewController {
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "signupcomplete") {
             return authorized
         } else {

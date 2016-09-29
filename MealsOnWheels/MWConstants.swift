@@ -12,9 +12,9 @@ import UIKit
 struct MWConstants {
     
     //Screen Size
-    static let screenSize = UIScreen.mainScreen().bounds
-    static let screenHeight = UIScreen.mainScreen().bounds.height
-    static let screenWidth = UIScreen.mainScreen().bounds.width
+    static let screenSize = UIScreen.main.bounds
+    static let screenHeight = UIScreen.main.bounds.height
+    static let screenWidth = UIScreen.main.bounds.width
     
     static let btnWidth = CGFloat(100)
     
@@ -23,6 +23,6 @@ struct MWConstants {
     
     
     struct colors {
-        static let loginBackground = UIColor.blueColor()
+        static let loginBackground = UIColor.blue
     }
 }

@@ -25,25 +25,25 @@ class WaypointViewCell: UITableViewCell, UITextViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         descriptionBody.delegate = self
-        height = CGRectGetHeight(nameLbl.frame)
-        height = height! + CGRectGetHeight(nameTxtFld.frame)
-        height = height! + CGRectGetHeight(phoneNmbrLbl.frame)
-        height = height! + CGRectGetHeight(phoneNumberTxtField.frame)
-        height = height! + CGRectGetHeight(descriptionBody.frame)
-        height = height! + CGRectGetHeight(DescripionTitle.frame)
+        height = nameLbl.frame.height
+        height = height! + nameTxtFld.frame.height
+        height = height! + phoneNmbrLbl.frame.height
+        height = height! + phoneNumberTxtField.frame.height
+        height = height! + descriptionBody.frame.height
+        height = height! + DescripionTitle.frame.height
         
         
         
     }
-    @IBAction func changeName(sender: UITextField) {
+    @IBAction func changeName(_ sender: UITextField) {
         waypoint?.title = nameTxtFld.text
         route?.saveData()
     }
-    @IBAction func changePhone(sender: UITextField) {
+    @IBAction func changePhone(_ sender: UITextField) {
         waypoint?.phoneNumber = phoneNumberTxtField.text
         route?.saveData()
     }
-    func textViewDidChange(textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         waypoint?.info = textView.text
         route?.saveData()
         

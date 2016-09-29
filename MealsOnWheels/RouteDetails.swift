@@ -19,7 +19,7 @@ class RouteDetails: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
@@ -28,7 +28,7 @@ class RouteDetails: UITableViewController {
         
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        if (selectedRow != -1 && selectedRow == indexPath.row) {
 //            let cell = tableView.cellForRowAtIndexPath(indexPath) as! WaypointViewCell
 //            return cell.height!
@@ -38,13 +38,13 @@ class RouteDetails: UITableViewController {
         return 200;
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return User.routes[objectNum].waypointsArray.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("WaypointCell") as! WaypointViewCell
-        let waypoint = User.routes[objectNum].waypointsArray[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WaypointCell") as! WaypointViewCell
+        let waypoint = User.routes[objectNum].waypointsArray[(indexPath as NSIndexPath).row]
         cell.route = User.routes[objectNum]
         cell.waypoint = waypoint
         cell.nameTxtFld.text = waypoint.title
@@ -53,8 +53,8 @@ class RouteDetails: UITableViewController {
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        (segue.destinationViewController as! UserTableController).objectNum = objectNum
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        (segue.destination as! UserTableController).objectNum = objectNum
         if segue.identifier == "share" {
         }
     }

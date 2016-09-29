@@ -46,16 +46,16 @@ class AddressController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        searchController.searchBar.frame = CGRectMake(0, 0, searchView.frame.width,searchView.frame.height)
+        searchController.searchBar.frame = CGRect(x: 0, y: 0, width: searchView.frame.width,height: searchView.frame.height)
     }
     
-    @IBAction func route(sender: AnyObject) {
-        let nameAlert = UIAlertController(title: "Title", message: "Title of this route", preferredStyle: UIAlertControllerStyle.Alert)
-        nameAlert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+    @IBAction func route(_ sender: AnyObject) {
+        let nameAlert = UIAlertController(title: "Title", message: "Title of this route", preferredStyle: UIAlertControllerStyle.alert)
+        nameAlert.addTextField { (textField) -> Void in
             textField.placeholder = "name?"
         }
         
-        let finishAction = UIAlertAction(title: "Route", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+        let finishAction = UIAlertAction(title: "Route", style: UIAlertActionStyle.default) { (alertAction) -> Void in
             MapTasks.waypointsArray = (self.routeSpec?.waypointsArray)!
             MapTasks.getDirections(self.origin, destination: self.destination, waypointsTemp: self.wayponts, travelMode: nil, completionHandler: { (status, success) -> Void in
                 if success {
@@ -68,24 +68,24 @@ class AddressController: UIViewController {
             })
             
 //            self.performSegueWithIdentifier("showMap", sender: sender)
-            self.navigationController?.popToRootViewControllerAnimated(true) 
+            self.navigationController?.popToRootViewController(animated: true) 
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (alertAction) -> Void in
             
         }
         nameAlert.addAction(finishAction)
         nameAlert.addAction(cancelAction)
-        presentViewController(nameAlert, animated: true, completion: nil)
+        present(nameAlert, animated: true, completion: nil)
     }
 }
 
 extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
-    func resultsController(resultsController: GMSAutocompleteResultsViewController, didAutocompleteWithPlace place: GMSPlace) {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         if (routeSpec == nil) {
             routeSpec = RouteSpec(waypoints: Array<GMSPlace>())
         }
-        searchController?.active = false
+        searchController?.isActive = false
         print(place.formattedAddress)
         switch(addressType.selectedSegmentIndex) {
         case 2:
@@ -106,7 +106,7 @@ extension AddressController: GMSAutocompleteResultsViewControllerDelegate {
         label.text = routeSpec!.toString()
     }
     
-    func resultsController(resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: NSError) {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: NSError) {
         print("Error: ", error.description)
     }
 }
