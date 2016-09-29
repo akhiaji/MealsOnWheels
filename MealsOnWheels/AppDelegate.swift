@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         GMSServices.provideAPIKey("AIzaSyBbhXDRdgDPl4H5ivZfvP9U_B0wsvAtQpc")
+        window = UIWindow()
+        window?.rootViewController = MainViewController()
+        window?.makeKeyAndVisible()
         return true
     }
     

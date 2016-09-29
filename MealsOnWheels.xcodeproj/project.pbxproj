@@ -25,8 +25,24 @@
 		49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53271CB05B4500B9C0A5 /* UserCell.swift */; };
 		7B4DB5F41D9D83D200403AD5 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */; };
 		7B4DB5F61D9D865100403AD5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */; };
+		878CEDC81D8B09930026916B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDC71D8B09930026916B /* LoginView.swift */; };
+		878CEDCB1D8B0A800026916B /* MWConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDCA1D8B0A800026916B /* MWConstants.swift */; };
+		878CEDCD1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDCC1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift */; };
+		878CEDCF1D8B0B780026916B /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDCE1D8B0B780026916B /* UIColor+Extensions.swift */; };
+		878CEDD11D8B0B940026916B /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDD01D8B0B940026916B /* UIView+Extensions.swift */; };
+		878CEDD31D8B0BB90026916B /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */; };
+		87AE14AB1D9D7D0D0046B1C2 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */; };
+		87AE14AD1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */; };
+		87AE14AF1D9D845B0046B1C2 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AE1D9D845B0046B1C2 /* TitleView.swift */; };
 		AAC86B7EDDF4A9D2F75BDC79 /* Pods_MealsOnWheelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E4093AC0FDF52065190BE2 /* Pods_MealsOnWheelsTests.framework */; };
 		B4B4E066411856D054A208E0 /* Pods_MealsOnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA5F5A60EA2ABC1F2D32E /* Pods_MealsOnWheels.framework */; };
+		CD8B9C2C1D8B237E000370CF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B9C2B1D8B237E000370CF /* MainTabView.swift */; };
+		CD8B9C2E1D8B25BA000370CF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */; };
+		CD8B9C301D8B2A97000370CF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B9C2F1D8B2A97000370CF /* MainView.swift */; };
+		CD8B9C321D8B2B3D000370CF /* CurrentRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B9C311D8B2B3D000370CF /* CurrentRouteView.swift */; };
+		CDF17AF61D8B40D70095337F /* RegistrationEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF17AF31D8B40D70095337F /* RegistrationEmailController.swift */; };
+		CDF17AF71D8B40D70095337F /* RegistrationEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF17AF41D8B40D70095337F /* RegistrationEmailView.swift */; };
+		CDF17AF81D8B40D70095337F /* RegistrationProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF17AF51D8B40D70095337F /* RegistrationProfileView.swift */; };
 		FA1F00981C21C79B0003B09B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F00971C21C79B0003B09B /* AppDelegate.swift */; };
 		FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F00991C21C79B0003B09B /* ViewController.swift */; };
 		FA1F009D1C21C79B0003B09B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1F009B1C21C79B0003B09B /* Main.storyboard */; };
@@ -68,7 +84,23 @@
 		7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		7F0267B42FF9B796E6D4F47D /* Pods-MealsOnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.release.xcconfig"; sourceTree = "<group>"; };
 		81ED8DF94161BD2073BA7FF2 /* Pods-MealsOnWheelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheelsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		878CEDC71D8B09930026916B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		878CEDCA1D8B0A800026916B /* MWConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWConstants.swift; sourceTree = "<group>"; };
+		878CEDCC1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
+		878CEDCE1D8B0B780026916B /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		878CEDD01D8B0B940026916B /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
+		87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewButtonHub.swift; sourceTree = "<group>"; };
+		87AE14AE1D9D845B0046B1C2 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BCCA057856D40A50A650A765 /* Pods-MealsOnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.debug.xcconfig"; sourceTree = "<group>"; };
+		CD8B9C2B1D8B237E000370CF /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CD8B9C2F1D8B2A97000370CF /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		CD8B9C311D8B2B3D000370CF /* CurrentRouteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentRouteView.swift; sourceTree = "<group>"; };
+		CDF17AF31D8B40D70095337F /* RegistrationEmailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailController.swift; sourceTree = "<group>"; };
+		CDF17AF41D8B40D70095337F /* RegistrationEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailView.swift; sourceTree = "<group>"; };
+		CDF17AF51D8B40D70095337F /* RegistrationProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationProfileView.swift; sourceTree = "<group>"; };
 		D3E4093AC0FDF52065190BE2 /* Pods_MealsOnWheelsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealsOnWheelsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85DA5F5A60EA2ABC1F2D32E /* Pods_MealsOnWheels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MealsOnWheels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1F00921C21C79B0003B09B /* MealsOnWheels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealsOnWheels.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +150,15 @@
 		49824A531C6D3EB300EE7001 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				87AE14AE1D9D845B0046B1C2 /* TitleView.swift */,
+				87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */,
+				CDF17AF31D8B40D70095337F /* RegistrationEmailController.swift */,
+				CDF17AF41D8B40D70095337F /* RegistrationEmailView.swift */,
+				CDF17AF51D8B40D70095337F /* RegistrationProfileView.swift */,
+				CD8B9C2F1D8B2A97000370CF /* MainView.swift */,
+				CD8B9C311D8B2B3D000370CF /* CurrentRouteView.swift */,
+				CD8B9C2B1D8B237E000370CF /* MainTabView.swift */,
+				878CEDC71D8B09930026916B /* LoginView.swift */,
 				491061091C4C1E2400674084 /* AddressController.swift */,
 				49824A511C6D3CE600EE7001 /* RouteViews.swift */,
 				FA1F00991C21C79B0003B09B /* ViewController.swift */,
@@ -143,6 +184,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		878CEDC61D8B08A70026916B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */,
+				CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */,
+				87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		878CEDC91D8B0A640026916B /* Constants+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				878CEDCC1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift */,
+				878CEDCE1D8B0B780026916B /* UIColor+Extensions.swift */,
+				878CEDD01D8B0B940026916B /* UIView+Extensions.swift */,
+				878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */,
+				878CEDCA1D8B0A800026916B /* MWConstants.swift */,
+			);
+			name = "Constants+Extensions";
+			sourceTree = "<group>";
+		};
 		FA1F00891C21C79B0003B09B = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +229,8 @@
 		FA1F00941C21C79B0003B09B /* MealsOnWheels */ = {
 			isa = PBXGroup;
 			children = (
+				878CEDC91D8B0A640026916B /* Constants+Extensions */,
+				878CEDC61D8B08A70026916B /* ViewControllers */,
 				49824A531C6D3EB300EE7001 /* Views */,
 				49824A4F1C6D3A6200EE7001 /* RouteSpec.swift */,
 				4982493F1C4EE5B100EE7001 /* Step.swift */,
@@ -216,6 +281,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1F00B11C21C79B0003B09B /* Build configuration list for PBXNativeTarget "MealsOnWheels" */;
 			buildPhases = (
+				8456B558586D73AACD9A3847 /* 📦 Check Pods Manifest.lock */,
 				E0E055304A18026808CB8E84 /* [CP] Check Pods Manifest.lock */,
 				6452F045E5AF23C036DF7D96 /* [CP] Check Pods Manifest.lock */,
 				FA1F008E1C21C79B0003B09B /* Sources */,
@@ -239,6 +305,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1F00B41C21C79B0003B09B /* Build configuration list for PBXNativeTarget "MealsOnWheelsTests" */;
 			buildPhases = (
+				FD96808394CEEA0F6C5645C2 /* 📦 Check Pods Manifest.lock */,
 				8FA6C1E0DF390E9099DD54BC /* [CP] Check Pods Manifest.lock */,
 				5B20DC40EBBD3216B172FBAB /* [CP] Check Pods Manifest.lock */,
 				FA1F00A31C21C79B0003B09B /* Sources */,
@@ -266,7 +333,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Akhilesh;
 				TargetAttributes = {
 					FA1F00911C21C79B0003B09B = {
@@ -398,6 +465,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+
+		8456B558586D73AACD9A3847 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		8FA6C1E0DF390E9099DD54BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -503,6 +586,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FD96808394CEEA0F6C5645C2 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -510,25 +608,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD8B9C321D8B2B3D000370CF /* CurrentRouteView.swift in Sources */,
+				878CEDCB1D8B0A800026916B /* MWConstants.swift in Sources */,
+				87AE14AB1D9D7D0D0046B1C2 /* TitleViewController.swift in Sources */,
+				CD8B9C301D8B2A97000370CF /* MainView.swift in Sources */,
+				CD8B9C2C1D8B237E000370CF /* MainTabView.swift in Sources */,
 				4910610A1C4C1E2400674084 /* AddressController.swift in Sources */,
+				878CEDD31D8B0BB90026916B /* UILabel+Extensions.swift in Sources */,
 				FA1F00BA1C24D1020003B09B /* MapTasks.swift in Sources */,
 				7B4DB5F61D9D865100403AD5 /* RegistrationViewController.swift in Sources */,
 				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
 				7B4DB5F41D9D83D200403AD5 /* RegistrationView.swift in Sources */,
+				87AE14AF1D9D845B0046B1C2 /* TitleView.swift in Sources */,
+				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
+				878CEDCF1D8B0B780026916B /* UIColor+Extensions.swift in Sources */,
+				CDF17AF61D8B40D70095337F /* RegistrationEmailController.swift in Sources */,
+				87AE14AD1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift in Sources */,
+				CDF17AF71D8B40D70095337F /* RegistrationEmailView.swift in Sources */,
 				49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */,
 				49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */,
 				49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */,
 				498249401C4EE5B100EE7001 /* Step.swift in Sources */,
 				FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */,
+				878CEDD11D8B0B940026916B /* UIView+Extensions.swift in Sources */,
 				49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */,
+				CD8B9C2E1D8B25BA000370CF /* MainViewController.swift in Sources */,
 				4942537F1CF20D4300512832 /* Place.swift in Sources */,
 				49824A501C6D3A6200EE7001 /* RouteSpec.swift in Sources */,
 				49DF531C1C7E2BD100B9C0A5 /* SignUpView.swift in Sources */,
+				878CEDCD1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift in Sources */,
+				878CEDC81D8B09930026916B /* LoginView.swift in Sources */,
 				49DF531E1C98AC6000B9C0A5 /* Waypoint.swift in Sources */,
 				49DF53181C74B55300B9C0A5 /* User.swift in Sources */,
 				49DF53221CA848DE00B9C0A5 /* WaypointViewCell.swift in Sources */,
 				49DF53141C72DC1B00B9C0A5 /* UIRouteViewCell.swift in Sources */,
 				FA1F00981C21C79B0003B09B /* AppDelegate.swift in Sources */,
+				CDF17AF81D8B40D70095337F /* RegistrationProfileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,8 +698,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -628,8 +745,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -648,6 +767,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -656,11 +776,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCA057856D40A50A650A765 /* Pods-MealsOnWheels.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MealsOnWheels/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Akhilesh.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -673,11 +794,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F0267B42FF9B796E6D4F47D /* Pods-MealsOnWheels.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MealsOnWheels/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Akhilesh.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

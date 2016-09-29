@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwiftLoader
 import UIKit
+import SwiftLoader
 
 class LoginController: UIViewController {
     
@@ -17,6 +17,19 @@ class LoginController: UIViewController {
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var signUp: UIButton!
     var loginSuccess = false
+    var loginView = LoginView(frame: CGRect(x: 0, y: 0, width: MWConstants.screenWidth, height: MWConstants.screenHeight))
+    
+    func configureButtons() {
+        
+    }
+    
+    func configureView() {
+        
+        configureButtons()
+        
+        self.view = loginView
+        
+    }
     
     override func viewDidLoad() {
         let prefs = UserDefaults.standard
@@ -43,7 +56,7 @@ class LoginController: UIViewController {
             self.loginSuccess = true
             self.performSegue(withIdentifier: "login", sender: self)
         })
-        
+    
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
