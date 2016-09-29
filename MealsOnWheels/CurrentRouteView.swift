@@ -72,7 +72,7 @@ class CurrentRouteView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureView()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

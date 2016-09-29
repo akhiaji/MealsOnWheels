@@ -39,6 +39,7 @@ class User: NSObject {
                     let userRef = self.ref.child(User.uid).child("email")
                     userRef.setValue(email)
                     let pathRef = self.ref.child(User.uid).child("paths")
+
                     //User.routes.removeAll()
                     pathRef.observe(.childAdded, with: {snapshot in
                         for child: FIRDataSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
@@ -49,6 +50,7 @@ class User: NSObject {
                     pathRef.observe(.childRemoved, with: {snapshot in
                         for child: FIRDataSnapshot in snapshot.children.allObjects as! [FIRDataSnapshot] {
                             let dic = child.value as! NSDictionary
+
                             //let routeSpec = RouteSpec.init(dict: dic["data"]  as! NSDictionary)
 //                            for i in 0 ..< User.routes.count {
 //                                let route = User.routes[i]

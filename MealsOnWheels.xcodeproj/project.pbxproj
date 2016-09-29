@@ -23,6 +23,8 @@
 		49DF53221CA848DE00B9C0A5 /* WaypointViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */; };
 		49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53251CB0597D00B9C0A5 /* UserTableController.swift */; };
 		49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53271CB05B4500B9C0A5 /* UserCell.swift */; };
+		7B4DB5F41D9D83D200403AD5 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */; };
+		7B4DB5F61D9D865100403AD5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */; };
 		878CEDC81D8B09930026916B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDC71D8B09930026916B /* LoginView.swift */; };
 		878CEDCB1D8B0A800026916B /* MWConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDCA1D8B0A800026916B /* MWConstants.swift */; };
 		878CEDCD1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDCC1D8B0B4D0026916B /* NSLayoutConstraint+Extensions.swift */; };
@@ -78,6 +80,8 @@
 		49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewCell.swift; sourceTree = "<group>"; };
 		49DF53251CB0597D00B9C0A5 /* UserTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableController.swift; sourceTree = "<group>"; };
 		49DF53271CB05B4500B9C0A5 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		7F0267B42FF9B796E6D4F47D /* Pods-MealsOnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.release.xcconfig"; sourceTree = "<group>"; };
 		81ED8DF94161BD2073BA7FF2 /* Pods-MealsOnWheelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheelsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		878CEDC71D8B09930026916B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -159,6 +163,9 @@
 				49824A511C6D3CE600EE7001 /* RouteViews.swift */,
 				FA1F00991C21C79B0003B09B /* ViewController.swift */,
 				49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */,
+				7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */,
+				49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */,
+				7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */,
 				49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */,
 				49DF531F1C98FC6800B9C0A5 /* RouteDetails.swift */,
 				49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */,
@@ -458,7 +465,9 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8456B558586D73AACD9A3847 /* [CP] Check Pods Manifest.lock */ = {
+
+
+		8456B558586D73AACD9A3847 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -608,6 +617,9 @@
 				4910610A1C4C1E2400674084 /* AddressController.swift in Sources */,
 				878CEDD31D8B0BB90026916B /* UILabel+Extensions.swift in Sources */,
 				FA1F00BA1C24D1020003B09B /* MapTasks.swift in Sources */,
+				7B4DB5F61D9D865100403AD5 /* RegistrationViewController.swift in Sources */,
+				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
+				7B4DB5F41D9D83D200403AD5 /* RegistrationView.swift in Sources */,
 				87AE14AF1D9D845B0046B1C2 /* TitleView.swift in Sources */,
 				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
 				878CEDCF1D8B0B780026916B /* UIColor+Extensions.swift in Sources */,
