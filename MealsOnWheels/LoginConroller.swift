@@ -19,34 +19,34 @@ class LoginController: UIViewController {
     var loginSuccess = false
     
     override func viewDidLoad() {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        if (prefs.valueForKey("email") != nil && prefs.valueForKey("pass") != nil) {
-            User.init(email: prefs.valueForKey("email") as! String, password: prefs.valueForKey("pass")as! String, errorCase: {() -> Void in
+        let prefs = UserDefaults.standard
+        if (prefs.value(forKey: "email") != nil && prefs.value(forKey: "pass") != nil) {
+            User.init(email: prefs.value(forKey: "email") as! String, password: prefs.value(forKey: "pass")as! String, errorCase: {() -> Void in
                 }, closure: {() -> Void in
-                    self.performSegueWithIdentifier("login", sender: self)
+                    self.performSegue(withIdentifier: "login", sender: self)
             })
         }
 
     }
     
-    @IBAction func signIn(sender: AnyObject) {
+    @IBAction func signIn(_ sender: AnyObject) {
         SwiftLoader.show(title: "Loading...", animated: true)
         User.init(email: emailField.text!, password: passField.text!, errorCase: {() -> Void in
             SwiftLoader.hide()
-            let nameAlert = UIAlertController(title: "Failed Sign Up", message: "Incorrect Username or password", preferredStyle: UIAlertControllerStyle.Alert)
+            let nameAlert = UIAlertController(title: "Failed Sign Up", message: "Incorrect Username or password", preferredStyle: UIAlertControllerStyle.alert)
             nameAlert
-            nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(nameAlert, animated: true, completion: nil)
+            nameAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(nameAlert, animated: true, completion: nil)
             self.loginSuccess = false
         }, closure: {() -> Void in
             SwiftLoader.hide()
             self.loginSuccess = true
-            self.performSegueWithIdentifier("login", sender: self)
+            self.performSegue(withIdentifier: "login", sender: self)
         })
         
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (identifier == "login") {
             return loginSuccess
         } else {

@@ -120,7 +120,7 @@ class RouteSpec: NSObject {
         let path = ["data": toDict()] as NSDictionary
         saveRef.setValue(path)
     }
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         if let rhs = object as? RouteSpec {
             return self.toDict() == rhs.toDict()
         }
@@ -133,22 +133,22 @@ class RouteSpec: NSObject {
         let list2 = NSMutableArray()
         if order.count == 0 {
             for i in 0 ..< waypoints.count {
-                list.addObject(waypointsArray[i].toDict())
-                list2.addObject(waypoints[i].toDict())
+                list.add(waypointsArray[i].toDict())
+                list2.add(waypoints[i].toDict())
             }
         } else {
             for i in order {
-                list.addObject(waypointsArray[i].toDict())
-                list2.addObject(waypoints[i].toDict())
+                list.add(waypointsArray[i].toDict())
+                list2.add(waypoints[i].toDict())
             }
         }
-        dict.setObject(origin!.toDict(), forKey: "origin")
-        dict.setObject(list, forKey: "waypoints")
-        dict.setObject(list2, forKey: "waypointPlaces")
-        dict.setObject(destination!.toDict(), forKey: "destination")
-        dict.setObject(uid, forKey: "uid")
-        dict.setObject(title, forKey: "title")
-        dict.setObject(enforceOrder, forKey: "enforceOrder")
+        dict.setObject(origin!.toDict(), forKey: "origin" as NSCopying)
+        dict.setObject(list, forKey: "waypoints" as NSCopying)
+        dict.setObject(list2, forKey: "waypointPlaces" as NSCopying)
+        dict.setObject(destination!.toDict(), forKey: "destination" as NSCopying)
+        dict.setObject(uid, forKey: "uid" as NSCopying)
+        dict.setObject(title, forKey: "title" as NSCopying)
+        dict.setObject(enforceOrder, forKey: "enforceOrder" as NSCopying)
         return dict
     }
 

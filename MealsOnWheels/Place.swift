@@ -43,10 +43,10 @@ class Place {
     
     func toDict() -> NSDictionary {
         let dict = NSMutableDictionary()
-        dict.setObject(name!, forKey: "name")
-        dict.setObject(formattedAddress!, forKey: "formattedAddress")
-        dict.setObject(lat!, forKey: "lat")
-        dict.setObject(long!, forKey: "long")
+        dict.setObject(name!, forKey: "name" as NSCopying)
+        dict.setObject(formattedAddress!, forKey: "formattedAddress" as NSCopying)
+        dict.setObject(lat!, forKey: "lat" as NSCopying)
+        dict.setObject(long!, forKey: "long" as NSCopying)
         return dict
     }
     

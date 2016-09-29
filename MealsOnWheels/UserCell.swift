@@ -24,7 +24,7 @@ class UserCell: UITableViewCell {
         self.addGestureRecognizer(tapGesture)
     }
     
-    func changeColor(color: UIColor) {
+    func changeColor(_ color: UIColor) {
         let text = NSMutableAttributedString(attributedString: emailLbl.attributedText!)
         text.setAttributes([NSForegroundColorAttributeName: color], range: NSMakeRange(0, text.length))
         emailLbl.attributedText = text
@@ -33,13 +33,13 @@ class UserCell: UITableViewCell {
     func share() {
         let routeRef = ref.child(user!.allKeys[0] as! String).child("paths").child(routeSpec!.uid)
         
-        routeRef.observeEventType(.Value, withBlock: {snapshot in
+        routeRef.observe(.value, with: {snapshot in
             routeRef.removeAllObservers()
             if snapshot.exists() {
-                self.changeColor(UIColor.redColor())
+                self.changeColor(UIColor.red)
                 routeRef.removeValue()
             } else {
-                self.changeColor(UIColor.greenColor())
+                self.changeColor(UIColor.green)
                 routeRef.setValue(["data":self.routeSpec!.toDict()])
             }
             routeRef.removeAllObservers()

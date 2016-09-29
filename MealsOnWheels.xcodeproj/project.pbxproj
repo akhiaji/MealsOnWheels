@@ -23,6 +23,8 @@
 		49DF53221CA848DE00B9C0A5 /* WaypointViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */; };
 		49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53251CB0597D00B9C0A5 /* UserTableController.swift */; };
 		49DF53281CB05B4500B9C0A5 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53271CB05B4500B9C0A5 /* UserCell.swift */; };
+		7B4DB5F41D9D83D200403AD5 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */; };
+		7B4DB5F61D9D865100403AD5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */; };
 		AAC86B7EDDF4A9D2F75BDC79 /* Pods_MealsOnWheelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E4093AC0FDF52065190BE2 /* Pods_MealsOnWheelsTests.framework */; };
 		B4B4E066411856D054A208E0 /* Pods_MealsOnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA5F5A60EA2ABC1F2D32E /* Pods_MealsOnWheels.framework */; };
 		FA1F00981C21C79B0003B09B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1F00971C21C79B0003B09B /* AppDelegate.swift */; };
@@ -62,6 +64,8 @@
 		49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaypointViewCell.swift; sourceTree = "<group>"; };
 		49DF53251CB0597D00B9C0A5 /* UserTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableController.swift; sourceTree = "<group>"; };
 		49DF53271CB05B4500B9C0A5 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		7F0267B42FF9B796E6D4F47D /* Pods-MealsOnWheels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.release.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.release.xcconfig"; sourceTree = "<group>"; };
 		81ED8DF94161BD2073BA7FF2 /* Pods-MealsOnWheelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheelsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCCA057856D40A50A650A765 /* Pods-MealsOnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +122,9 @@
 				49824A511C6D3CE600EE7001 /* RouteViews.swift */,
 				FA1F00991C21C79B0003B09B /* ViewController.swift */,
 				49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */,
+				7B4DB5F51D9D865100403AD5 /* RegistrationViewController.swift */,
 				49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */,
+				7B4DB5F31D9D83D200403AD5 /* RegistrationView.swift */,
 				49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */,
 				49DF531F1C98FC6800B9C0A5 /* RouteDetails.swift */,
 				49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */,
@@ -210,7 +216,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1F00B11C21C79B0003B09B /* Build configuration list for PBXNativeTarget "MealsOnWheels" */;
 			buildPhases = (
-				E0E055304A18026808CB8E84 /* 📦 Check Pods Manifest.lock */,
+				E0E055304A18026808CB8E84 /* [CP] Check Pods Manifest.lock */,
 				6452F045E5AF23C036DF7D96 /* [CP] Check Pods Manifest.lock */,
 				FA1F008E1C21C79B0003B09B /* Sources */,
 				FA1F008F1C21C79B0003B09B /* Frameworks */,
@@ -233,7 +239,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1F00B41C21C79B0003B09B /* Build configuration list for PBXNativeTarget "MealsOnWheelsTests" */;
 			buildPhases = (
-				8FA6C1E0DF390E9099DD54BC /* 📦 Check Pods Manifest.lock */,
+				8FA6C1E0DF390E9099DD54BC /* [CP] Check Pods Manifest.lock */,
 				5B20DC40EBBD3216B172FBAB /* [CP] Check Pods Manifest.lock */,
 				FA1F00A31C21C79B0003B09B /* Sources */,
 				FA1F00A41C21C79B0003B09B /* Frameworks */,
@@ -266,9 +272,11 @@
 					FA1F00911C21C79B0003B09B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 5UY7FM3CQ5;
+						LastSwiftMigration = 0800;
 					};
 					FA1F00A61C21C79B0003B09B = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = FA1F00911C21C79B0003B09B;
 					};
 				};
@@ -390,14 +398,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8FA6C1E0DF390E9099DD54BC /* 📦 Check Pods Manifest.lock */ = {
+		8FA6C1E0DF390E9099DD54BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,14 +458,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E0E055304A18026808CB8E84 /* 📦 Check Pods Manifest.lock */ = {
+		E0E055304A18026808CB8E84 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +512,9 @@
 			files = (
 				4910610A1C4C1E2400674084 /* AddressController.swift in Sources */,
 				FA1F00BA1C24D1020003B09B /* MapTasks.swift in Sources */,
+				7B4DB5F61D9D865100403AD5 /* RegistrationViewController.swift in Sources */,
 				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
+				7B4DB5F41D9D83D200403AD5 /* RegistrationView.swift in Sources */,
 				49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */,
 				49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */,
 				49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */,
@@ -655,6 +665,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Akhilesh.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -671,6 +682,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Akhilesh.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -691,6 +703,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Akhilesh.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealsOnWheels.app/MealsOnWheels";
 			};
 			name = Debug;
@@ -708,6 +721,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Akhilesh.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealsOnWheels.app/MealsOnWheels";
 			};
 			name = Release;
