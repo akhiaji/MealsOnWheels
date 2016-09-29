@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class LoginView: UIView {
+    //
+    
     
     //Image Views
     var logoImgView = UIImageView()
@@ -45,6 +47,12 @@ class LoginView: UIView {
     }
     
     func configureView() {
+        
+//        let gradient = CAGradientLayer()
+//        gradient.frame = self.view.bounds
+//        gradient.colors = [MWConstants.colors.loginDarkGradient.cgColor, MWConstants.colors.loginLightGradient.cgColor]
+//        self.view.layer.insertSublayer(gradient, at: 0)
+
         self.backgroundColor = MWConstants.colors.loginBackground
         
         configureImageViews()

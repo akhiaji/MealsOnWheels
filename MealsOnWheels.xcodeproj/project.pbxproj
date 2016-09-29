@@ -14,7 +14,7 @@
 		49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A511C6D3CE600EE7001 /* RouteViews.swift */; };
 		4994ECA31D81E21F0095DB17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4994ECA21D81E21F0095DB17 /* GoogleService-Info.plist */; };
 		49DF53141C72DC1B00B9C0A5 /* UIRouteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */; };
-		49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */; };
+		49DF53161C74B4EC00B9C0A5 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53151C74B4EC00B9C0A5 /* LoginController.swift */; };
 		49DF53181C74B55300B9C0A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF53171C74B55300B9C0A5 /* User.swift */; };
 		49DF531A1C7505CB00B9C0A5 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DF53191C7505CB00B9C0A5 /* Login.storyboard */; };
 		49DF531C1C7E2BD100B9C0A5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */; };
@@ -68,7 +68,7 @@
 		49824A511C6D3CE600EE7001 /* RouteViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViews.swift; sourceTree = "<group>"; };
 		4994ECA21D81E21F0095DB17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49DF53131C72DC1B00B9C0A5 /* UIRouteViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRouteViewCell.swift; sourceTree = "<group>"; };
-		49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConroller.swift; sourceTree = "<group>"; };
+		49DF53151C74B4EC00B9C0A5 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		49DF53171C74B55300B9C0A5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		49DF53191C7505CB00B9C0A5 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		49DF531B1C7E2BD100B9C0A5 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 		878CEDC61D8B08A70026916B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				49DF53151C74B4EC00B9C0A5 /* LoginConroller.swift */,
+				49DF53151C74B4EC00B9C0A5 /* LoginController.swift */,
 				CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */,
 				87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */,
 			);
@@ -271,7 +271,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1F00B11C21C79B0003B09B /* Build configuration list for PBXNativeTarget "MealsOnWheels" */;
 			buildPhases = (
-				8456B558586D73AACD9A3847 /* 📦 Check Pods Manifest.lock */,
+				8456B558586D73AACD9A3847 /* [CP] Check Pods Manifest.lock */,
 				E0E055304A18026808CB8E84 /* [CP] Check Pods Manifest.lock */,
 				6452F045E5AF23C036DF7D96 /* [CP] Check Pods Manifest.lock */,
 				FA1F008E1C21C79B0003B09B /* Sources */,
@@ -295,7 +295,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1F00B41C21C79B0003B09B /* Build configuration list for PBXNativeTarget "MealsOnWheelsTests" */;
 			buildPhases = (
-				FD96808394CEEA0F6C5645C2 /* 📦 Check Pods Manifest.lock */,
+				FD96808394CEEA0F6C5645C2 /* [CP] Check Pods Manifest.lock */,
 				8FA6C1E0DF390E9099DD54BC /* [CP] Check Pods Manifest.lock */,
 				5B20DC40EBBD3216B172FBAB /* [CP] Check Pods Manifest.lock */,
 				FA1F00A31C21C79B0003B09B /* Sources */,
@@ -455,14 +455,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheelsTests/Pods-MealsOnWheelsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8456B558586D73AACD9A3847 /* 📦 Check Pods Manifest.lock */ = {
+		8456B558586D73AACD9A3847 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,14 +575,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FD96808394CEEA0F6C5645C2 /* 📦 Check Pods Manifest.lock */ = {
+		FD96808394CEEA0F6C5645C2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,7 +611,7 @@
 				87AE14AD1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift in Sources */,
 				CDF17AF71D8B40D70095337F /* RegistrationEmailView.swift in Sources */,
 				49DF53261CB0597D00B9C0A5 /* UserTableController.swift in Sources */,
-				49DF53161C74B4EC00B9C0A5 /* LoginConroller.swift in Sources */,
+				49DF53161C74B4EC00B9C0A5 /* LoginController.swift in Sources */,
 				49824A521C6D3CE600EE7001 /* RouteViews.swift in Sources */,
 				498249401C4EE5B100EE7001 /* Step.swift in Sources */,
 				FA1F009A1C21C79B0003B09B /* ViewController.swift in Sources */,

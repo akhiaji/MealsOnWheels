@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         GMSServices.provideAPIKey("AIzaSyBbhXDRdgDPl4H5ivZfvP9U_B0wsvAtQpc")
         window = UIWindow()
-        window?.rootViewController = TitleViewController()
+        window?.rootViewController = LoginController()
         window?.makeKeyAndVisible()
         return true
     }
