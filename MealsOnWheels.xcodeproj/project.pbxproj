@@ -31,6 +31,7 @@
 		878CEDD31D8B0BB90026916B /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */; };
 		87AE14AB1D9D7D0D0046B1C2 /* TitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */; };
 		87AE14AD1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */; };
+		87AE14AF1D9D845B0046B1C2 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AE14AE1D9D845B0046B1C2 /* TitleView.swift */; };
 		AAC86B7EDDF4A9D2F75BDC79 /* Pods_MealsOnWheelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E4093AC0FDF52065190BE2 /* Pods_MealsOnWheelsTests.framework */; };
 		B4B4E066411856D054A208E0 /* Pods_MealsOnWheels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85DA5F5A60EA2ABC1F2D32E /* Pods_MealsOnWheels.framework */; };
 		CD8B9C2C1D8B237E000370CF /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B9C2B1D8B237E000370CF /* MainTabView.swift */; };
@@ -87,6 +88,7 @@
 		878CEDD21D8B0BB90026916B /* UILabel+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		87AE14AA1D9D7D0D0046B1C2 /* TitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewController.swift; sourceTree = "<group>"; };
 		87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleViewButtonHub.swift; sourceTree = "<group>"; };
+		87AE14AE1D9D845B0046B1C2 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		BCCA057856D40A50A650A765 /* Pods-MealsOnWheels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MealsOnWheels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MealsOnWheels/Pods-MealsOnWheels.debug.xcconfig"; sourceTree = "<group>"; };
 		CD8B9C2B1D8B237E000370CF /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		CD8B9C2D1D8B25BA000370CF /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,8 @@
 		49824A531C6D3EB300EE7001 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				87AE14AE1D9D845B0046B1C2 /* TitleView.swift */,
+				87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */,
 				CDF17AF31D8B40D70095337F /* RegistrationEmailController.swift */,
 				CDF17AF41D8B40D70095337F /* RegistrationEmailView.swift */,
 				CDF17AF51D8B40D70095337F /* RegistrationProfileView.swift */,
@@ -160,7 +164,6 @@
 				49DF53211CA848DE00B9C0A5 /* WaypointViewCell.swift */,
 				49DF53251CB0597D00B9C0A5 /* UserTableController.swift */,
 				49DF53271CB05B4500B9C0A5 /* UserCell.swift */,
-				87AE14AC1D9D7EFE0046B1C2 /* TitleViewButtonHub.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				4910610A1C4C1E2400674084 /* AddressController.swift in Sources */,
 				878CEDD31D8B0BB90026916B /* UILabel+Extensions.swift in Sources */,
 				FA1F00BA1C24D1020003B09B /* MapTasks.swift in Sources */,
+				87AE14AF1D9D845B0046B1C2 /* TitleView.swift in Sources */,
 				49DF53201C98FC6800B9C0A5 /* RouteDetails.swift in Sources */,
 				878CEDCF1D8B0B780026916B /* UIColor+Extensions.swift in Sources */,
 				CDF17AF61D8B40D70095337F /* RegistrationEmailController.swift in Sources */,

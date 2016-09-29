@@ -11,13 +11,12 @@ import UIKit
 
 class TitleViewController: UIViewController {
     
-    func configureView() {
-        let gradient = CAGradientLayer()
-        gradient.frame = self.view.bounds
-        gradient.colors = [MWConstants.colors.loginDarkGradient.cgColor, MWConstants.colors.loginLightGradient.cgColor]
-        self.view.layer.insertSublayer(gradient, at: 0)
-    }
+    //Main View
+    var mainView = TitleView(frame: CGRect(x: 0, y: 0, width: MWConstants.screenWidth, height: MWConstants.screenHeight))
     
+    func configureView() {
+        self.view.addSubview(mainView)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
