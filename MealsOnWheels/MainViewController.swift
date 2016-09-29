@@ -15,7 +15,9 @@ class MainViewController: UIViewController {
     var mainView = MainView();
     
     func configureButtons() {
+        mainView.tabView.currentRoute.addTarget(self, action: #selector(switchPage(_:)), for: .touchUpInside)
         
+        mainView.tabView.myRoutes.addTarget(self, action: #selector(switchPage(_:)), for: .touchUpInside)
     }
     
     func configureView() {
@@ -28,5 +30,13 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         configureView()
+    }
+    
+    func switchPage(_ sender: UIButton) {
+        if sender == mainView.tabView.currentRoute {
+            mainView.tabView.currentPage = Page.CurrentRoute
+        } else if sender == mainView.tabView.myRoutes {
+            mainView.tabView.currentPage = Page.MyRoutes
+        }
     }
 }

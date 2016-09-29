@@ -15,14 +15,32 @@ class MainTabView: UIView {
     var currentRoute = UIButton()
     var myRoutes = UIButton()
     
+    //Current Page
+    var currentPage = Page.CurrentRoute {
+        willSet(newPage) {
+            if (newPage != currentPage) {
+                switch newPage {
+                case .CurrentRoute:
+                    currentRoute.backgroundColor = MWConstants.colors.loginDarkGradient
+                    myRoutes.backgroundColor = MWConstants.colors.loginLightGradient
+                    break
+                case .MyRoutes:
+                    myRoutes.backgroundColor = MWConstants.colors.loginDarkGradient
+                    currentRoute.backgroundColor = MWConstants.colors.loginLightGradient
+                    break
+                }
+            }
+        }
+    }
+    
     func configureButtons() {
         currentRoute.setTitle("Current Route", for: .normal)
         currentRoute.setTitleColor(UIColor.white, for: .normal)
-        currentRoute.backgroundColor = UIColor.darkGray
+        currentRoute.backgroundColor = MWConstants.colors.loginDarkGradient
         
         myRoutes.setTitle("My Routes", for: .normal)
         myRoutes.setTitleColor(UIColor.white, for: .normal)
-        myRoutes.backgroundColor = UIColor.gray
+        myRoutes.backgroundColor = MWConstants.colors.loginLightGradient
     }
     
     func configureView() {
@@ -56,4 +74,9 @@ class MainTabView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+enum Page {
+    case CurrentRoute
+    case MyRoutes
 }

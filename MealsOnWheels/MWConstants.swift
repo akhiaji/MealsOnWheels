@@ -25,6 +25,7 @@ struct MWConstants {
     static let titleImg = UIImage(named: "Title")
     static let logoImg = UIImage(named: "upload-empty")
     
+    static let tabBtnHeight = CGFloat(50.0)
     
     struct colors {
         static let loginBackground = UIColor.blue
