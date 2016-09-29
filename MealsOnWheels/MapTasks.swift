@@ -56,18 +56,18 @@ class MapTasks : NSObject {
     
     
     
-    static func getDirections(origin: String!, destination: String!, waypointsTemp: Array<String>!, travelMode: AnyObject!, completionHandler: ((status: String, success: Bool) -> Void)) {
+    static func getDirections(_ origin: String!, destination: String!, waypointsTemp: Array<String>!, travelMode: AnyObject!, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)) {
         
         
-        let htmlDestination = destination.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let htmlDestination = destination.addingPercentEscapes(using: String.Encoding.utf8)!
         
 
         let directionsRequest = "comgooglemaps-x-callback://" +
         "?daddr=" + htmlDestination +
         "&x-success=MOWapp://?resume=true&x-source=MOW"
-        let directionsURL = NSURL(string:directionsRequest);
-        if (UIApplication.sharedApplication().canOpenURL( NSURL(string: "comgooglemaps-x-callback://")!)) {
-            UIApplication.sharedApplication().openURL(directionsURL!)
+        let directionsURL = URL(string:directionsRequest);
+        if (UIApplication.shared.canOpenURL( URL(string: "comgooglemaps-x-callback://")!)) {
+            UIApplication.shared.openURL(directionsURL!)
         } else {
             print("Can't use comgooglemaps://");
         }
@@ -94,18 +94,18 @@ class MapTasks : NSObject {
                         directionsURLString += "|"+(waypoint as! String)
                     }
                 }
-                if (UIApplication.sharedApplication().canOpenURL( NSURL(string: "comgooglemaps-x-callback://")!)) {
-                    UIApplication.sharedApplication().openURL(directionsURL!)
+                if (UIApplication.shared.canOpenURL( URL(string: "comgooglemaps-x-callback://")!)) {
+                    UIApplication.shared.openURL(directionsURL!)
                 } else {
                     print("Can't use comgooglemaps://");
                 }
-                directionsURLString = directionsURLString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-                let directionsURL = NSURL(string: directionsURLString)
-                dispatch_async(dispatch_get_main_queue(), {() -> Void in
-                    let directionsData = NSData(contentsOfURL: directionsURL!)
+                directionsURLString = directionsURLString.addingPercentEscapes(using: String.Encoding.utf8)!
+                let directionsURL = URL(string: directionsURLString)
+                DispatchQueue.main.async(execute: {() -> Void in
+                    let directionsData = try? Data(contentsOf: directionsURL!)
                     
                     do {
-                        let dictionary: Dictionary<NSObject, AnyObject> = try NSJSONSerialization.JSONObjectWithData(directionsData!, options: NSJSONReadingOptions.MutableContainers) as! Dictionary<NSObject, AnyObject>
+                        let dictionary: Dictionary<NSObject, AnyObject> = try JSONSerialization.jsonObject(with: directionsData!, options: JSONSerialization.ReadingOptions.mutableContainers) as! Dictionary<NSObject, AnyObject>
                         let status = dictionary["status"] as! String
                         
                         if status == "OK" {
@@ -124,7 +124,7 @@ class MapTasks : NSObject {
                             let path: GMSPath = GMSPath(fromEncodedPath: route)!
                             customPath = GMSMutablePath(path: path)
                             customPath.removeAllCoordinates()
-                            waypoints.addObject(destination)
+                            waypoints.add(destination)
                             for leg in self.selectedRoute["legs"] as! Array<Dictionary<NSObject, AnyObject>> {
                                 for step in leg["steps"] as! Array<Dictionary<NSObject, AnyObject>> {
                                     let lat = step["end_location"]!["lat"] as! Double
@@ -133,9 +133,9 @@ class MapTasks : NSObject {
                                     let path = step["polyline"]
                                     let epath = path!["points"] as! String
                                     let coord = CLLocation(latitude: lat, longitude: long)
-                                    customPath.addCoordinate(coord.coordinate)
+                                    customPath.add(coord.coordinate)
                                     let encodedString = step["html_instructions"] as! String
-                                    let attributedOptions : [String: AnyObject] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding]
+                                    let attributedOptions : [String: AnyObject] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8]
                                     let attributedString = NSAttributedString(string: encodedString, attributes: attributedOptions)
                                     let directions = attributedString.string
                                     let stepObject = Step(location: coord, direction: directions, distance: distance, path: GMSPath(fromEncodedPath: epath)!, waypoint: false)
@@ -145,7 +145,7 @@ class MapTasks : NSObject {
                             }
                             for i in self.order{
                                 let waypointsCopy = NSMutableArray()
-                                waypointsCopy.addObject(waypointsArray[i])
+                                waypointsCopy.add(waypointsArray[i])
                             }
                             completionHandler(status: status, success: true)
                         } else {
@@ -155,17 +155,17 @@ class MapTasks : NSObject {
                         
                     } catch let error as NSError {
                         print(error.localizedDescription)
-                        completionHandler(status: "", success: false)
+                        completionHandler("", false)
                     }
                     
                         
                 })
                 
             } else {
-                completionHandler(status: "Destination is nil.", success: false)
+                completionHandler("Destination is nil.", false)
             }
         } else {
-            completionHandler(status: "Origin is nil", success: false)
+            completionHandler("Origin is nil", false)
         }
     }
     
@@ -186,7 +186,7 @@ class MapTasks : NSObject {
         totalDuration = "Duration: \(days) days, \(hours%24) hr, \(mins%60) min"
     }
     
-    static func sendToEnd(waypoint: Waypoint?, completionHandler: ((status: String, success: Bool) -> Void)){
+    static func sendToEnd(_ waypoint: Waypoint?, completionHandler: @escaping ((_ status: String, _ success: Bool) -> Void)){
         var first = waypointsArray.removeFirst()
         if waypoint != nil{
             first = waypoint as Waypoint!

@@ -32,10 +32,10 @@ class Waypoint {
     
     func toDict() -> NSDictionary {
         let dict = NSMutableDictionary()
-        dict.setObject(address!, forKey: "address")
-        dict.setObject(phoneNumber!, forKey: "phone")
-        dict.setObject(info!, forKey: "info")
-        dict.setObject(title!, forKey: "title")
+        dict.setObject(address!, forKey: "address" as NSCopying)
+        dict.setObject(phoneNumber!, forKey: "phone" as NSCopying)
+        dict.setObject(info!, forKey: "info" as NSCopying)
+        dict.setObject(title!, forKey: "title" as NSCopying)
         return dict
     }
 }

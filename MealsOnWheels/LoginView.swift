@@ -25,7 +25,7 @@ class LoginView: UIView {
     
     func configureImageViews() {
         logoImgView.image = MWConstants.logoImg
-        logoImgView.contentMode = .ScaleAspectFit
+        logoImgView.contentMode = .scaleAspectFit
     }
     
     func configureTextFields() {
@@ -35,13 +35,13 @@ class LoginView: UIView {
     }
     
     func configureButtons() {
-        loginBtn.setTitle("Login", forState: .Normal)
-        loginBtn.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        loginBtn.backgroundColor = UIColor.whiteColor()
+        loginBtn.setTitle("Login", for: UIControlState())
+        loginBtn.setTitleColor(UIColor.blue, for: UIControlState())
+        loginBtn.backgroundColor = UIColor.white
         
-        signUpBtn.setTitle("Sign Up", forState: .Normal)
-        signUpBtn.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        signUpBtn.backgroundColor = UIColor.whiteColor()
+        signUpBtn.setTitle("Sign Up", for: UIControlState())
+        signUpBtn.setTitleColor(UIColor.blue, for: UIControlState())
+        signUpBtn.backgroundColor = UIColor.white
     }
     
     func configureView() {
@@ -58,7 +58,7 @@ class LoginView: UIView {
             "psTF"  :   passwordTF,
             "login" :   loginBtn,
             "signup":   signUpBtn
-        ]
+        ] as [String : Any]
         
         self.prepareViewsForAutoLayout(viewsDict)
         
